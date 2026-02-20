@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egypt & Morocco 2026 - Belinda & Nerida's Adventure</title>
+<style>
+  :root {
+    --navy: #1a1a4e;
+    --gold: #d4a853;
+    --gold-light: #f0d48a;
+    --terracotta: #c45a3c;
+    --sand: #f5e6cc;
+    --sand-light: #faf3e8;
+    --egypt-blue: #1e3a5f;
+    --morocco-red: #c1272d;
+    --morocco-green: #006233;
+    --white: #ffffff;
+    --gray-100: #f7f7f7;
+    --gray-200: #e8e8e8;
+    --gray-500: #888;
+    --gray-700: #444;
+    --gray-900: #1a1a1a;
+    --radius: 12px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--sand-light);
+    color: var(--gray-900);
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--egypt-blue) 50%, var(--terracotta) 100%);
+    color: var(--white);
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200'%3E%3Cpath d='M0,200 L100,180 L200,185 L250,100 L270,100 L290,180 L350,185 L400,120 L420,50 L440,120 L500,185 L600,180 L700,185 L800,180 L800,200Z' fill='%23f5e6cc' opacity='0.1'/%3E%3C/svg%3E") bottom/cover no-repeat;
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+  .hero .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+  }
+  .hero .dates {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+  .hero .travellers {
+    display: inline-flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+  .hero .travellers span {
+    background: rgba(255,255,255,0.15);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Timezone Banner */
+  .tz-banner {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .tz-banner .tz-icon { font-size: 1.1rem; }
+  .tz-banner strong { color: var(--navy); }
+  .tz-toggle {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  .tz-toggle:hover { background: var(--egypt-blue); }
+
+  /* Container */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  /* Section Headers */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+  }
+  .section-header .flag {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .section-header .line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  /* Day Card */
+  .day-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .day-card:hover { box-shadow: var(--shadow-hover); }
+
+  .day-header {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .day-header:active { background: var(--gray-100); }
+
+  .day-num {
+    min-width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--navy), var(--egypt-blue));
+    color: var(--white);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .day-num.morocco {
+    background: linear-gradient(135deg, var(--morocco-red), var(--terracotta));
+  }
+  .day-num.travel {
+    background: linear-gradient(135deg, #555, #333);
+  }
+  .day-num .num { font-size: 1.1rem; }
+  .day-num .label { font-size: 0.6rem; text-transform: uppercase; opacity: 0.85; }
+
+  .day-info { flex: 1; min-width: 0; }
+  .day-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.15rem;
+  }
+  .day-date {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+  }
+  .day-meals {
+    display: flex;
+    gap: 0.35rem;
+    margin-top: 0.3rem;
+    flex-wrap: wrap;
+  }
+  .meal-badge {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 8px;
+    background: var(--sand);
+    color: var(--gray-700);
+    font-weight: 500;
+  }
+
+  /* Weather */
+  .weather-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--gray-700);
+    margin-left: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .weather-badge .wx-icon { font-size: 1rem; line-height: 1; }
+  .weather-badge .wx-temp { font-weight: 600; }
+  .weather-detail {
+    background: linear-gradient(135deg, #e8f4fd, #f0f7ff);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .weather-detail .wx-big-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; }
+  .weather-detail .wx-info { flex: 1; }
+  .weather-detail .wx-temps {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--gray-900);
+    margin-bottom: 0.15rem;
+  }
+  .weather-detail .wx-desc {
+    font-size: 0.8rem;
+    color: var(--gray-700);
+  }
+  .weather-detail .wx-tip {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: 0.25rem;
+    font-style: italic;
+  }
+
+  .day-chevron {
+    font-size: 1.2rem;
+    color: var(--gray-500);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .day-card.open .day-chevron { transform: rotate(180deg); }
+
+  .day-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .day-card.open .day-body {
+    max-height: 2000px;
+  }
+  .day-content {
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--gray-200);
+    padding-top: 1rem;
+  }
+  .day-content p {
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    margin-bottom: 0.75rem;
+    line-height: 1.65;
+  }
+  .day-content .optional {
+    background: #fff8e6;
+    border-left: 3px solid var(--gold);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Hotel Card */
+  .hotel-info {
+    background: var(--sand-light);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+  .hotel-info .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .hotel-info .details { flex: 1; min-width: 0; }
+  .hotel-info .name { font-weight: 600; font-size: 0.85rem; color: var(--gray-900); }
+  .hotel-info .address {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    margin-top: 0.1rem;
+  }
+  .hotel-info .address a {
+    color: var(--egypt-blue);
+    text-decoration: none;
+  }
+  .hotel-info .address a:hover { text-decoration: underline; }
+  .hotel-info .phone {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    margin-top: 0.1rem;
+  }
+  .hotel-info .phone a { color: var(--gray-500); text-decoration: none; }
+
+  /* Flight Card */
+  .flight-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-left: 4px solid var(--navy);
+  }
+  .flight-header {
+    background: linear-gradient(135deg, var(--navy), var(--egypt-blue));
+    color: var(--white);
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .flight-body {
+    padding: 1rem 1.25rem;
+  }
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .flight-point {
+    flex: 1;
+    text-align: center;
+  }
+  .flight-point .city {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--gray-900);
+  }
+  .flight-point .time-local {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .flight-point .date {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+  .flight-point .tz-label {
+    font-size: 0.7rem;
+    color: var(--gray-500);
+  }
+  .flight-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--gray-500);
+    flex-shrink: 0;
+    min-width: 80px;
+  }
+  .flight-arrow .duration {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .flight-arrow .arrow-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gray-200);
+    position: relative;
+  }
+  .flight-arrow .arrow-line::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -3px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid var(--gray-200);
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+  }
+  .your-time {
+    background: #eef6ff;
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--egypt-blue);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .your-time .icon { font-size: 1rem; }
+
+  /* Expand All */
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--gray-700);
+    transition: all 0.2s;
+  }
+  .controls button:hover {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+  .controls button.active {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--gray-500);
+    font-size: 0.8rem;
+  }
+  .footer .emergency {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1rem;
+    max-width: 400px;
+    margin: 0 auto 1rem;
+    box-shadow: var(--shadow);
+    text-align: left;
+  }
+  .footer .emergency h3 {
+    color: var(--terracotta);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .footer .emergency p {
+    font-size: 0.8rem;
+    color: var(--gray-700);
+    margin-bottom: 0.25rem;
+  }
+  .footer .emergency a { color: var(--egypt-blue); text-decoration: none; }
+
+  /* Countdown */
+  .countdown {
+    background: rgba(255,255,255,0.12);
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Quick nav pills */
+  .nav-pills {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.75rem 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-pills::-webkit-scrollbar { display: none; }
+  .nav-pill {
+    flex-shrink: 0;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    padding: 0.35rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    color: var(--gray-700);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-pill:hover, .nav-pill.active {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+  .nav-pill.morocco:hover, .nav-pill.morocco.active {
+    background: var(--morocco-red);
+    border-color: var(--morocco-red);
+  }
+
+  /* Today highlight */
+  .day-card.today {
+    border: 2px solid var(--gold);
+  }
+  .day-card.today .day-num {
+    background: linear-gradient(135deg, var(--gold), var(--terracotta));
+  }
+  .today-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+  }
+
+  /* Photo Banner */
+  .photo-banner {
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 1rem 1.25rem;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+  .photo-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.05) 100%);
+    pointer-events: none;
+  }
+  .photo-banner .banner-emoji {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .photo-banner .banner-label {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+    margin-left: 0.5rem;
+  }
+
+  /* Progress Section */
+  .progress-section {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+  }
+  .progress-bar {
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--egypt-blue));
+    transition: width 0.6s ease;
+  }
+  .progress-fill.morocco {
+    background: linear-gradient(90deg, var(--egypt-blue), var(--morocco-red));
+  }
+  .progress-fill.complete {
+    background: linear-gradient(90deg, var(--navy), var(--egypt-blue), var(--morocco-red), var(--gold));
+  }
+
+  /* Route Map */
+  .route-map {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+  }
+  .route-map h3 {
+    font-size: 0.9rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+  .route-stops {
+    display: flex;
+    align-items: center;
+    min-width: 600px;
+    padding: 0.5rem 0;
+  }
+  .route-stop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .route-stop .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--navy);
+    margin-bottom: 0.4rem;
+    transition: all 0.3s;
+  }
+  .route-stop.morocco .dot {
+    background: var(--morocco-red);
+    box-shadow: 0 0 0 2px var(--morocco-red);
+  }
+  .route-stop.active .dot {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 0 0 3px var(--gold), 0 0 12px rgba(212,168,83,0.5);
+  }
+  .route-stop .stop-name {
+    font-size: 0.65rem;
+    color: var(--gray-700);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .route-stop.active .stop-name {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .route-line {
+    flex: 1;
+    height: 2px;
+    background: var(--navy);
+    min-width: 20px;
+    margin: 0 2px;
+    margin-bottom: 1.6rem;
+  }
+  .route-line.morocco {
+    background: var(--morocco-red);
+  }
+  .route-line.flight {
+    background: none;
+    border-top: 2px dashed var(--gray-500);
+    height: 0;
+  }
+
+  /* Tips */
+  .tip-box {
+    background: linear-gradient(135deg, #f0f7e6, #e8f5d8);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .tip-box .tip-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .tip-box .tip-content {
+    flex: 1;
+  }
+  .tip-box .tip-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 0.2rem;
+  }
+  .tip-box .tip-text {
+    font-size: 0.8rem;
+    color: var(--gray-700);
+    line-height: 1.4;
+  }
+
+  /* Share Section */
+  .share-section {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0 1rem;
+    flex-wrap: wrap;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .share-btn.whatsapp {
+    background: #25D366;
+    color: var(--white);
+  }
+  .share-btn.whatsapp:hover { background: #1da851; }
+  .share-btn.copy {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .share-btn.copy:hover { background: var(--egypt-blue); }
+  .share-btn.email {
+    background: var(--terracotta);
+    color: var(--white);
+  }
+  .share-btn.email:hover { background: #a84832; }
+
+  /* Spa Card */
+  .spa-card {
+    background: linear-gradient(135deg, #f9f5ef 0%, #f0e8d8 100%);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+    border: 1px solid #e0d4c0;
+  }
+  .spa-card h4 {
+    font-size: 1rem;
+    color: #8B6914;
+    margin-bottom: 0.15rem;
+  }
+  .spa-card .spa-location {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    margin-bottom: 0.75rem;
+  }
+  .spa-card .spa-access {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+  }
+  .spa-card .spa-access .price {
+    font-weight: 700;
+    color: #8B6914;
+  }
+  .spa-card .spa-access .note {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+  .spa-package {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  .spa-package.recommended {
+    border: 1px solid #8B6914;
+  }
+  .spa-package .pkg-badge {
+    position: absolute;
+    top: -0.4rem;
+    right: 0.5rem;
+    background: #8B6914;
+    color: var(--white);
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+  .spa-package .pkg-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--gray-900);
+  }
+  .spa-package .pkg-time {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+  .spa-package .pkg-price {
+    font-weight: 700;
+    color: #8B6914;
+    font-size: 0.85rem;
+  }
+  .spa-package .pkg-desc {
+    font-size: 0.75rem;
+    color: var(--gray-700);
+    margin-top: 0.2rem;
+    line-height: 1.4;
+  }
+  .spa-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+  .spa-quick-item {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    color: var(--gray-700);
+  }
+  .spa-quick-item .q-price { font-weight: 600; color: #8B6914; }
+  .spa-contact {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+  .spa-contact a { color: #8B6914; text-decoration: none; }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .subtitle { font-size: 0.95rem; }
+    .flight-route { flex-direction: column; gap: 0.25rem; }
+    .flight-arrow {
+      flex-direction: row;
+      min-width: auto;
+      gap: 0.5rem;
+    }
+    .flight-arrow .arrow-line {
+      width: 40px;
+    }
+    .tz-banner {
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      padding: 0.5rem 1rem;
+    }
+    .photo-banner { height: 110px; }
+    .photo-banner .banner-label { font-size: 0.95rem; }
+  }
+
+  /* Print styles */
+  @media print {
+    .tz-banner, .controls, .nav-pills { display: none; }
+    .day-body { max-height: none !important; }
+    .day-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Egypt & Morocco</h1>
+  <div class="subtitle">Cairo to Casablanca &mdash; 23 Day Adventure</div>
+  <div class="dates">9 March &ndash; 3 April 2026</div>
+  <div class="travellers">
+    <span>Belinda</span>
+    <span>Nerida</span>
+  </div>
+  <div class="countdown" id="countdown"></div>
+</div>
+
+<!-- Timezone Banner -->
+<div class="tz-banner">
+  <span class="tz-icon">&#127760;</span>
+  <span>Times shown in: <strong id="tz-display"></strong></span>
+  <button class="tz-toggle" id="tz-toggle-btn" onclick="toggleTzMode()">Show destination times</button>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+
+  <!-- Quick Nav -->
+  <div class="nav-pills" id="nav-pills"></div>
+
+  <!-- Share -->
+  <div class="share-section">
+    <button class="share-btn whatsapp" onclick="shareWhatsApp()">&#128172; WhatsApp</button>
+    <button class="share-btn copy" onclick="copyLink()">&#128203; Copy Link</button>
+    <a class="share-btn email" href="" id="share-email">&#9993;&#65039; Email</a>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button onclick="expandAll()">Expand All</button>
+    <button onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  <!-- Content injected by JS -->
+  <div id="itinerary"></div>
+
+  <!-- Emergency Contacts -->
+  <div class="footer">
+    <div class="emergency">
+      <h3>Emergency Contacts</h3>
+      <p><strong>My Cruises (Australia)</strong></p>
+      <p>Office: <a href="tel:1300722826">1300 722 826</a></p>
+      <p>After Hours: <a href="tel:+61756318916">+61 7 5631 8916</a></p>
+      <p style="margin-top:0.5rem"><strong>Egypt Tour Operator</strong></p>
+      <p>Intrepid DMC: <a href="tel:+201096811067">+20 109 681 1067</a></p>
+      <p style="margin-top:0.5rem"><strong>Morocco Tour Operator</strong></p>
+      <p>EasyGo Tours: <a href="tel:+212662175808">+212 662 175 808</a></p>
+    </div>
+    <p>Booking Ref: MYC-116965</p>
+    <p style="margin-top:0.25rem">Built with love for Belinda & Nerida's big adventure</p>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const FLIGHTS = [
+  {
+    id: 'outbound1',
+    airline: 'Qatar Airways',
+    flightNum: 'QR 899',
+    from: 'Brisbane',
+    to: 'Doha',
+    depUTC: '2026-03-09T11:55:00Z', // 21:55 AEST
+    arrUTC: '2026-03-10T02:30:00Z', // 05:30 AST
+    depTZ: 'Australia/Brisbane',
+    arrTZ: 'Asia/Qatar',
+    duration: '14h 35m',
+    aircraft: 'Boeing 777-300ER'
+  },
+  {
+    id: 'outbound2',
+    airline: 'Qatar Airways',
+    flightNum: 'QR 1303',
+    from: 'Doha',
+    to: 'Cairo',
+    depUTC: '2026-03-10T05:15:00Z', // 08:15 AST
+    arrUTC: '2026-03-10T09:05:00Z', // 11:05 EET
+    depTZ: 'Asia/Qatar',
+    arrTZ: 'Africa/Cairo',
+    duration: '3h 50m',
+    aircraft: 'Boeing 777-300ER'
+  },
+  {
+    id: 'mid-transfer',
+    airline: 'Egyptair',
+    flightNum: 'MS 847',
+    from: 'Cairo',
+    to: 'Casablanca',
+    depUTC: '2026-03-19T06:05:00Z', // 08:05 EET
+    arrUTC: '2026-03-19T11:50:00Z', // 12:50 WET+1
+    depTZ: 'Africa/Cairo',
+    arrTZ: 'Africa/Casablanca',
+    duration: '5h 45m',
+    aircraft: 'Airbus A321'
+  },
+  {
+    id: 'return1',
+    airline: 'Qatar Airways',
+    flightNum: 'QR 1396',
+    from: 'Casablanca',
+    to: 'Doha',
+    depUTC: '2026-04-01T19:50:00Z', // 20:50 WET+1
+    arrUTC: '2026-04-02T02:35:00Z', // 05:35 AST
+    depTZ: 'Africa/Casablanca',
+    arrTZ: 'Asia/Qatar',
+    duration: '6h 45m',
+    aircraft: 'Airbus A350-900'
+  },
+  {
+    id: 'return2',
+    airline: 'Qatar Airways',
+    flightNum: 'QR 898',
+    from: 'Doha',
+    to: 'Brisbane',
+    depUTC: '2026-04-02T17:20:00Z', // 20:20 AST
+    arrUTC: '2026-04-03T07:30:00Z', // 17:30 AEST
+    depTZ: 'Asia/Qatar',
+    arrTZ: 'Australia/Brisbane',
+    duration: '14h 10m',
+    aircraft: 'Boeing 777-300ER'
+  }
+];
+
+const HOTELS = {
+  cairo1: { name: 'Barcelo Cairo Pyramids Hotel', address: '229 Al Haram Street, Cairo', phone: '+20 2 358 2330', mapQ: 'Barcelo+Cairo+Pyramids+Hotel' },
+  aswan: { name: 'Basma Hotel Aswan', address: 'Corniche El Nile St, Aswan', phone: '+20 97 248 4001', mapQ: 'Basma+Hotel+Aswan' },
+  nileCruise: { name: 'Tower Prestige Nile Cruise', address: 'Aswan to Luxor', phone: '+20 100 488 0015', mapQ: '' },
+  luxor: { name: 'Pyramisa Isis Luxor Hotel', address: 'Khalid Ibn El Walid St, East Bank, Luxor', phone: '+20 233 368 000', mapQ: 'Pyramisa+Isis+Luxor+Hotel' },
+  cairo2: { name: 'Barcelo Cairo Pyramids Hotel', address: '229 Al Haram Street, Cairo', phone: '+20 2 358 2330', mapQ: 'Barcelo+Cairo+Pyramids+Hotel' },
+  casablanca: { name: 'Odyssee Center Casablanca', address: 'Avenue Hassan 2, Casablanca', phone: '+212 520 48 38 00', mapQ: 'Odyssee+Center+Casablanca' },
+  rabat: { name: 'Hotel Rihab', address: '45 Av. Moulay Ismail, Rabat', phone: '+212 537 70 48 34', mapQ: 'Hotel+Rihab+Rabat' },
+  chefchaouen: { name: 'Hotel Esmeralda Chefchaouen', address: 'Av MLY Abderrahman Cherif, Chefchaouen', phone: '+212 539 88 25 26', mapQ: 'Hotel+Esmeralda+Chefchaouen' },
+  fes: { name: 'Atlas Saiss', address: '3 Avenue des FAR, Fes', phone: '+212 535 94 42 42', mapQ: 'Atlas+Saiss+Fes' },
+  rissani: { name: 'Kasbah Hotel Ziz Palace', address: 'Route Merzouga, Rissani', phone: '+212 535 774 704', mapQ: 'Kasbah+Hotel+Ziz+Palace+Rissani' },
+  merzouga: { name: 'Merzouga Dune Luxury Camp', address: 'Ksar Tiharien, Merzouga', phone: '+212 667 41 31 31', mapQ: 'Merzouga+dune+luxury+camp' },
+  todra: { name: 'Auberge Royal Palmas', address: 'Ait Baha Tizgui, Gorge Todra', phone: '+212 524 89 56 32', mapQ: 'Auberge+Royal+Palmas+Todra' },
+  ouarzazate: { name: 'Oscar Hotel by Atlas Studios', address: 'KM 5, Route de Marrakech, Ouarzazate', phone: '+212 524 88 22 23', mapQ: 'Oscar+Hotel+Atlas+Studios+Ouarzazate' },
+  marrakech: { name: 'Hotel El Andalous Lounges & Spa', address: 'Ave du President Kennedy, Marrakech', phone: '+212 524 448 226', mapQ: 'Hotel+El+Andalous+Marrakech' },
+  casablanca2: { name: 'Odyssee Center Casablanca', address: 'Avenue Hassan 2, Casablanca', phone: '+212 520 48 38 00', mapQ: 'Odyssee+Center+Casablanca' }
+};
+
+// Typical March weather for each day's location
+const WEATHER = {
+  1:  { icon: '\u2600\uFE0F', high: 24, low: 12, desc: 'Sunny and pleasant', tip: 'Light layers for evening' },
+  2:  { icon: '\u2600\uFE0F', high: 24, low: 12, desc: 'Sunny and warm', tip: 'Sunscreen and hat for the pyramids' },
+  3:  { icon: '\u2600\uFE0F', high: 29, low: 15, desc: 'Hot and dry', tip: 'Much warmer in Aswan \u2014 stay hydrated' },
+  4:  { icon: '\u2600\uFE0F', high: 30, low: 15, desc: 'Hot and sunny', tip: 'Cool on the Nile \u2014 bring a light jacket for deck' },
+  5:  { icon: '\u2600\uFE0F', high: 30, low: 16, desc: 'Hot and sunny', tip: 'Sunscreen essential on the open deck' },
+  6:  { icon: '\u2600\uFE0F', high: 29, low: 14, desc: 'Sunny and warm', tip: 'Comfortable for temple visits' },
+  7:  { icon: '\u2600\uFE0F', high: 29, low: 13, desc: 'Sunny and warm', tip: 'Good walking weather for Karnak' },
+  8:  { icon: '\u2600\uFE0F', high: 29, low: 13, desc: 'Sunny, clear skies', tip: 'Start early \u2014 Valley of the Kings heats up' },
+  9:  { icon: '\u2600\uFE0F', high: 25, low: 12, desc: 'Sunny and pleasant', tip: 'Cooler back in Cairo' },
+  10: { icon: '\u26C5', high: 20, low: 13, desc: 'Partly cloudy, milder', tip: 'Casablanca is cooler \u2014 bring a jacket' },
+  11: { icon: '\u26C5', high: 20, low: 11, desc: 'Mild, chance of showers', tip: 'Pack a light rain layer for Rabat' },
+  12: { icon: '\u26C5', high: 17, low: 8, desc: 'Cool mountain air', tip: 'Chefchaouen is chilly \u2014 layers essential' },
+  13: { icon: '\u26C5', high: 21, low: 10, desc: 'Mild and pleasant', tip: 'Comfortable driving weather' },
+  14: { icon: '\u2600\uFE0F', high: 22, low: 10, desc: 'Warm and sunny', tip: 'Perfect for exploring the medina' },
+  15: { icon: '\u2600\uFE0F', high: 20, low: 8, desc: 'Cool in the mountains', tip: 'Atlas passes can be cold \u2014 warm layer' },
+  16: { icon: '\u2600\uFE0F', high: 25, low: 8, desc: 'Hot days, cold nights', tip: 'Desert camp gets very cold at night \u2014 bring warm clothes!' },
+  17: { icon: '\u2600\uFE0F', high: 24, low: 9, desc: 'Warm and dry', tip: 'Sunrise is worth the early wake-up' },
+  18: { icon: '\u2600\uFE0F', high: 24, low: 10, desc: 'Warm and sunny', tip: 'Dry desert air \u2014 drink plenty of water' },
+  19: { icon: '\u2600\uFE0F', high: 24, low: 11, desc: 'Warm and clear', tip: 'Beautiful for the Atlas crossing' },
+  20: { icon: '\u2600\uFE0F', high: 24, low: 11, desc: 'Warm and sunny', tip: 'Perfect exploring weather' },
+  21: { icon: '\u2600\uFE0F', high: 24, low: 11, desc: 'Warm and pleasant', tip: 'Great day for optional activities' },
+  22: { icon: '\u26C5', high: 20, low: 13, desc: 'Milder in Casablanca', tip: 'Light jacket for the evening dinner' },
+  23: { icon: '\u26C5', high: 20, low: 13, desc: 'Mild, partly cloudy', tip: 'Safe travels home!' }
+};
+
+// Destination photo banners (gradient backgrounds + emoji per day)
+const PHOTOS = {
+  1:  { img: 'https://images.unsplash.com/photo-1641285598519-c19fa349b3d5?w=800&h=300&fit=crop&auto=format&q=75', label: 'Cairo, Egypt' },
+  2:  { img: 'https://images.unsplash.com/photo-1706651785622-5500a55197ed?w=800&h=300&fit=crop&auto=format&q=75', label: 'Pyramids of Giza' },
+  3:  { img: 'https://images.unsplash.com/photo-1707266327241-322e4d9723bb?w=800&h=300&fit=crop&auto=format&q=75', label: 'Philae Temple, Aswan' },
+  4:  { img: 'https://images.unsplash.com/photo-1502250663587-0437415428a2?w=800&h=300&fit=crop&auto=format&q=75', label: 'Abu Simbel & Nile Cruise' },
+  5:  { img: 'https://images.unsplash.com/photo-1696509528129-c28dc0308733?w=800&h=300&fit=crop&auto=format&q=75', label: 'Kom Ombo Temple' },
+  6:  { img: 'https://images.unsplash.com/photo-1660705630675-d66d60fdca46?w=800&h=300&fit=crop&auto=format&q=75', label: 'Edfu & Luxor Temples' },
+  7:  { img: 'https://images.unsplash.com/photo-1762530162773-c99f38d4d5d3?w=800&h=300&fit=crop&auto=format&q=75', label: 'Karnak Temple' },
+  8:  { img: 'https://images.unsplash.com/photo-1689876021889-b3f6cfd41b95?w=800&h=300&fit=crop&auto=format&q=75', label: 'Valley of the Kings' },
+  9:  { img: 'https://images.unsplash.com/photo-1720553359883-43e221149b74?w=800&h=300&fit=crop&auto=format&q=75', label: 'Khan El Khalili, Cairo' },
+  10: { img: 'https://images.unsplash.com/photo-1706203644187-a719449587bb?w=800&h=300&fit=crop&auto=format&q=75', label: 'Cairo to Casablanca' },
+  11: { img: 'https://images.unsplash.com/photo-1706203644201-67b62fbd62c6?w=800&h=300&fit=crop&auto=format&q=75', label: 'Rabat' },
+  12: { img: 'https://images.unsplash.com/photo-1707398344112-fbc2e62ca4ae?w=800&h=300&fit=crop&auto=format&q=75', label: 'Chefchaouen' },
+  13: { img: 'https://images.unsplash.com/photo-1650709042954-960b207eda51?w=800&h=300&fit=crop&auto=format&q=75', label: 'Volubilis & Fes' },
+  14: { img: 'https://images.unsplash.com/photo-1655376407073-d03c3ae3584d?w=800&h=300&fit=crop&auto=format&q=75', label: 'Fes Medina' },
+  15: { img: 'https://images.unsplash.com/photo-1560789590-ee4cc7125967?w=800&h=300&fit=crop&auto=format&q=75', label: 'Atlas Mountains' },
+  16: { img: 'https://images.unsplash.com/photo-1706804198742-b71ec3c1952b?w=800&h=300&fit=crop&auto=format&q=75', label: 'Sahara Desert' },
+  17: { img: 'https://images.unsplash.com/photo-1553523291-8bac4d75344d?w=800&h=300&fit=crop&auto=format&q=75', label: 'Todra Gorge' },
+  18: { img: 'https://images.unsplash.com/photo-1590802163243-290dd8621032?w=800&h=300&fit=crop&auto=format&q=75', label: 'Ouarzazate' },
+  19: { img: 'https://images.unsplash.com/photo-1624802357760-5e1fdc9def34?w=800&h=300&fit=crop&auto=format&q=75', label: 'Ait Benhaddou' },
+  20: { img: 'https://images.unsplash.com/photo-1583856073081-d75a4b9ce95b?w=800&h=300&fit=crop&auto=format&q=75', label: 'Marrakesh' },
+  21: { img: 'https://images.unsplash.com/photo-1739686176648-2b53d1bbe87f?w=800&h=300&fit=crop&auto=format&q=75', label: 'Jardin Majorelle' },
+  22: { img: 'https://images.unsplash.com/photo-1706203644187-a719449587bb?w=800&h=300&fit=crop&auto=format&q=75', label: 'Farewell Casablanca' },
+  23: { img: 'https://images.unsplash.com/photo-1650652345327-662a0e7d8668?w=800&h=300&fit=crop&auto=format&q=75', label: 'Journey Home' }
+};
+
+// Cultural tips and packing suggestions per day
+const TIPS = {
+  1:  { culture: 'Tipping is expected in Egypt — small notes (10-20 EGP) for porters and helpers.', packing: 'Comfortable travel clothes, passport copies in separate bag.' },
+  2:  { culture: 'Dress modestly at religious sites — shoulders and knees covered.', packing: 'Hat, sunscreen SPF50+, comfortable walking shoes, water bottle.' },
+  3:  { culture: 'Nubian hospitality is warm — accept tea when offered, it\'s polite!', packing: 'Light layers for evening boat ride, camera for Philae Temple.' },
+  4:  { culture: 'Abu Simbel was moved stone by stone in the 1960s to save it from flooding.', packing: 'Light jacket for Nile cruise deck evenings.' },
+  5:  { culture: 'Kom Ombo\'s dual design is unique — one side for each god.', packing: 'Comfortable shoes for walking temple grounds.' },
+  6:  { culture: 'Horse carriages at Edfu are the traditional way to reach the temple.', packing: 'Good walking shoes for multiple temple visits today.' },
+  7:  { culture: 'Karnak is the second-largest ancient religious site in the world.', packing: 'Plenty of water — the temple complex is huge.' },
+  8:  { culture: 'Photography inside tombs in the Valley of the Kings requires an extra ticket.', packing: 'Start early! Bring water, hat, and sunscreen for the desert heat.' },
+  9:  { culture: 'Bargaining is expected at Khan El Khalili — start at half the asking price.', packing: 'Secure bag for the busy market streets.' },
+  10: { culture: 'Morocco uses the dirham (MAD). You\'ll find ATMs at Casablanca airport.', packing: 'Jacket for cooler Moroccan coast weather.' },
+  11: { culture: 'Hassan II Mosque is one of the few mosques non-Muslims can enter.', packing: 'Headscarf for mosque visit, rain layer for Rabat.' },
+  12: { culture: 'Chefchaouen\'s blue paint tradition may date to Jewish refugees in the 1930s.', packing: 'Warm layers — mountain air is chilly. Great spot for photos!' },
+  13: { culture: 'Volubilis is a UNESCO site — the best-preserved Roman ruins in Morocco.', packing: 'Comfortable shoes for the ruins and walking in Fes.' },
+  14: { culture: 'The Fes tanneries have been operating since the 9th century. You may be offered mint to hold under your nose!', packing: 'Closed shoes for medina alleys. Secure valuables.' },
+  15: { culture: 'Ifrane was built by the French — it has a famous stone lion sculpture.', packing: 'Warm layer for Atlas mountain passes — it gets cold at altitude.' },
+  16: { culture: 'The Gnawa people have a rich musical tradition linked to spiritual healing.', packing: 'Warm clothes for cold desert night! Scarf to protect from sand.' },
+  17: { culture: 'Todra Gorge walls rise 300m — popular with rock climbers from around the world.', packing: 'Good walking shoes for gorge trail. Sunrise is spectacular.' },
+  18: { culture: 'Ouarzazate\'s Atlas Studios have been used for films like Gladiator and Lawrence of Arabia.', packing: 'Comfortable clothes for a scenic driving day.' },
+  19: { culture: 'Ait Benhaddou is a UNESCO site featured in Game of Thrones and many Hollywood films.', packing: 'Camera essential! Good shoes for climbing the ksar.' },
+  20: { culture: 'Djemaa el-Fna square transforms at night with food stalls, musicians and storytellers.', packing: 'Secure cross-body bag for the busy souks.' },
+  21: { culture: 'A traditional Moroccan hammam spa is a wonderful cultural experience — go for it!', packing: 'Swimwear if doing hammam. Light clothes for a relaxed day.' },
+  22: { culture: 'Farewell dinner is a lovely tradition — the group often exchanges contact details.', packing: 'Start packing souvenirs carefully for the flight home.' },
+  23: { culture: 'Safe travels! Remember to convert remaining dirhams at the airport.', packing: 'Keep travel documents and snacks handy for the long journey.' }
+};
+
+const DAYS = [
+  {
+    day: 1, date: '2026-03-10', name: 'Arrive Cairo', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: [],
+    description: 'Welcome to Cairo, a city combined with rich history and culture and modern buildings. On arrival at the airport a transfer is included to the hotel. Depending on your arrival time, you may have the opportunity to explore the local surroundings, try some local Egyptian cuisine, or simply unwind and prepare for the incredible trip ahead.',
+    flights: ['outbound1', 'outbound2'],
+    hotel: 'cairo1',
+    mapLocation: 'Cairo,Egypt'
+  },
+  {
+    day: 2, date: '2026-03-11', name: 'Cairo Pyramids, Sphinx & Museum', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast'],
+    description: 'After breakfast at your hotel, meet your tour leader who will accompany you throughout your tour. Begin your adventure at the Giza Plateau, home to the iconic Pyramids of Giza and the Sphinx, standing as timeless symbols of Egypt\'s grandeur. Next, delve into the treasures of the world-renowned Egyptian Museum, where your guide will bring history to life as you stroll through halls filled with priceless antiquities, each telling a story of Egypt\'s fascinating past.',
+    notes: 'Meeting point: Hotel Lobby at 9:00 AM',
+    meetingTimeUTC: '2026-03-11T07:00:00Z', // 9am EET
+    hotel: 'cairo1',
+    mapLocation: 'Giza+Pyramids,Egypt'
+  },
+  {
+    day: 3, date: '2026-03-12', name: 'Fly to Aswan, Philae Temple & Nubian Dinner', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast', 'Dinner'],
+    description: 'Catch a flight from Cairo to Aswan, where your adventure continues. Upon arrival, take a motorboat ride between the Old Dam and the High Dam to reach the stunning Philae Temple. This breathtaking temple, dedicated to Isis \u2014 the Goddess of health, marriage, and wisdom. Admire its beautifully carved pylons, considered some of the finest in Egypt, making it a true gem of Upper Egypt.\n\nLater, join a welcoming Nubian family for a memorable dinner, where you\'ll enjoy traditional dishes and gain firsthand insight into their daily life.',
+    hotel: 'aswan',
+    mapLocation: 'Philae+Temple,Aswan,Egypt'
+  },
+  {
+    day: 4, date: '2026-03-13', name: 'Aswan \u2013 Join Nile Cruise', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast', 'Lunch', 'Dinner'],
+    description: 'Rise early for an optional morning excursion to the spectacular Abu Simbel temple, famous for its impressive four huge, seated statues of Ramses II carved into the rocky hillside and facade. Explore the UNESCO-listed site before returning to Aswan around midday.\n\nIf not visiting Abu Simbel, the morning is free to explore the colourful souks and markets found in the town. Then, embark on your three-night Nile cruise, arriving in time for lunch on board. In the afternoon, relax as you set sail on a traditional felucca, drifting around Aswan\'s scenic islands.',
+    optional: 'Optional Tour: Abu Simbel Temple \u2013 USD 110 per person, paid locally on tour.',
+    hotel: 'nileCruise',
+    mapLocation: 'Abu+Simbel,Egypt'
+  },
+  {
+    day: 5, date: '2026-03-14', name: 'Nile Cruise \u2013 Kom Ombo Temple', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast', 'Lunch', 'Dinner'],
+    description: 'Cruising along the Nile, arrive at Kom Ombo, where you\'ll explore its riverside temple. Admire the beautifully preserved friezes and discover the temple\'s unique dual design, dedicated to both Sobek, the crocodile god, and Horus, the falcon-headed god. Don\'t miss the collection of mummified crocodiles and other remarkable artifacts that offer a glimpse into Egypt\'s Greco-Roman period.',
+    hotel: 'nileCruise',
+    mapLocation: 'Kom+Ombo+Temple,Egypt'
+  },
+  {
+    day: 6, date: '2026-03-15', name: 'Nile Cruise \u2013 Edfu & Luxor Temples', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast', 'Lunch', 'Dinner'],
+    description: 'Transfer from your Nile cruise to Edfu Temple by traditional horse-drawn carriage, the only way to reach this remarkable site. Edfu Temple, dating back to 237\u201357 BC, is the best-preserved temple in Egypt.\n\nIn the afternoon, continue your cruise to Luxor Temple, a magnificent structure dedicated to the gods Amun, Mut, and Khonsu. This temple played a central role in the ancient Opet Festival. As the sun sets, you may want to visit Luxor Temple bathed in golden light.',
+    hotel: 'nileCruise',
+    mapLocation: 'Edfu+Temple,Egypt'
+  },
+  {
+    day: 7, date: '2026-03-16', name: 'Disembark Cruise, Luxor & Karnak Temples', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast'],
+    description: 'Disembark from your Nile cruise and transfer to your hotel in Luxor.\n\nLater, visit the awe-inspiring Karnak Temple, one of the world\'s most renowned temple complexes, built over nearly 2,000 years, with sections dating back as early as 2055 BC. Explore this vast site, uncover its most remarkable towering columns to intricately carved hieroglyphs, offering a glimpse into the grandeur of ancient Egypt.',
+    hotel: 'luxor',
+    mapLocation: 'Karnak+Temple,Luxor,Egypt'
+  },
+  {
+    day: 8, date: '2026-03-17', name: 'Luxor West Bank \u2013 Valley of the Kings', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast'],
+    description: 'After an early breakfast, tour the West Bank of the Nile, starting at the Colossi of Memnon, then explore the ancient burial sites of Egyptian pharaohs in the world-famous Valley of the Kings.\n\nVisit the Temple of Queen Hatshepsut and admire the vibrant hieroglyphics at Medinet Habu Temple. End the journey by taking in breathtaking views of the desert landscape that once inspired ancient civilizations.',
+    hotel: 'luxor',
+    mapLocation: 'Valley+of+the+Kings,Luxor,Egypt'
+  },
+  {
+    day: 9, date: '2026-03-18', name: 'Fly to Cairo \u2013 Khan El Khalili Bazaar', country: 'egypt',
+    tz: 'Africa/Cairo',
+    meals: ['Breakfast'],
+    description: 'Today fly from Luxor to Cairo and check into your hotel. Step back in time at the historic Citadel of Salah El-Dein, home to the magnificent Mohamed Ali Mosque, built in 1830 AD.\n\nThen, head to the iconic Khan El Khalili Bazaar \u2014 an essential Egyptian experience. Follow the bustling alleys, filled with rich aromas, vibrant stalls, and centuries-old charm. Wander through Cairo\'s winding backstreets, where Islamic architecture and Coptic churches rise amid spice-scented markets and colorful shops.',
+    hotel: 'cairo2',
+    mapLocation: 'Khan+El+Khalili,Cairo,Egypt'
+  },
+  {
+    day: 10, date: '2026-03-19', name: 'Fly Cairo to Casablanca (Morocco)', country: 'travel',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'Today you\'ll leave the land of pharaohs behind and fly into Morocco\'s world of spice and adventure. On arrival into Casablanca hotel, you\'ll have some free time to explore before you meet your new Moroccan Tour Leader at 6pm for a briefing.',
+    flights: ['mid-transfer'],
+    hotel: 'casablanca',
+    meetingTimeUTC: '2026-03-19T17:00:00Z', // 6pm WET+1
+    mapLocation: 'Casablanca,Morocco'
+  },
+  {
+    day: 11, date: '2026-03-20', name: 'Rabat', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast', 'Dinner'],
+    description: 'Start your day with an optional visit to the impressive Hassan II Mosque in Casablanca (extra cost) before heading to Rabat, Morocco\'s capital.\n\nBegin your tour with a visit to Oudaya Kasbah, one of the oldest quarters of Rabat and a great example of a fortified city. Then see Hassan Tower, a beautiful minaret constructed in 1195. This afternoon, check into your hotel and enjoy some free time to discover Rabat at your own pace.',
+    optional: 'Optional: Hassan II Mosque visit (extra cost)',
+    hotel: 'rabat',
+    mapLocation: 'Oudaya+Kasbah,Rabat,Morocco'
+  },
+  {
+    day: 12, date: '2026-03-21', name: 'Chefchaouen \u2013 The Blue City', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'This morning travel to Chefchaouen for the night, nestled high in the Rif mountains. Known for its iconic blue doors and white-walled medina, this former Berber post exudes charm at every turn. The main square serves as the heart of the town, featuring the historic kasbah, central mosque, bustling markets, and cozy cafes.\n\nStroll through the maze of narrow, blue-painted streets adorned with archways, staircases, and hidden laneways, and immerse yourself in the magic of the "Blue City."',
+    hotel: 'chefchaouen',
+    mapLocation: 'Chefchaouen,Morocco'
+  },
+  {
+    day: 13, date: '2026-03-22', name: 'Volubilis \u2013 Fes', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'Enjoy a free morning in Chefchaouen to relax or spend more time exploring. In the afternoon, continue a scenic drive through the Rif Mountains toward Fes. Along the way, stop at Ouazzane for a refreshing coffee or mint tea before continuing to the ancient Roman ruins of Volubilis. Explore the archaeological site and its connection to Moroccan history.\n\nAfterwards continue directly to Fes, where you will settle in for a two-night stay.',
+    optional: 'This evening is an optional dinner with live music, belly dancing and magicians (extra cost).',
+    hotel: 'fes',
+    mapLocation: 'Volubilis,Morocco'
+  },
+  {
+    day: 14, date: '2026-03-23', name: 'Fes Sightseeing', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'Fes is the oldest and largest medieval city in the world and its medina is full of aromas, sights and sounds. This morning, enjoy a guided tour of Fes el Bali \u2013 the old walled city including a visit to the dye-pits and tanneries, then stop for lunch.\n\nThis fascinating medina is a rabbit warren of 9400 alleys! The rest of the day will be spent at leisure.',
+    hotel: 'fes',
+    mapLocation: 'Fes+el+Bali,Fes,Morocco'
+  },
+  {
+    day: 15, date: '2026-03-24', name: 'Atlas Mountains \u2013 Rissani', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast', 'Dinner'],
+    description: 'After breakfast, depart from Fes, making a delightful stop at the Alpine town of Ifran, often dubbed the Switzerland of Morocco. Our journey takes us through the Middle and High Atlas Mountains, showcasing Cedar Forest, quaint Berber villages, and picturesque towns with apple farms.\n\nA break for lunch will be taken along the way, offering the opportunity for some panoramic photos of the expansive date palm plantations and the awe-inspiring Atlas Mountains. After a day of scenic driving, settle into your hotel.',
+    hotel: 'rissani',
+    mapLocation: 'Ifrane,Morocco'
+  },
+  {
+    day: 16, date: '2026-03-25', name: 'Merzouga Desert Camp', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast', 'Dinner'],
+    description: 'Indulge in a hearty breakfast this morning, as we head out on an exciting 4WD tour to the Sahara Desert. Begin the day with the Gnawa people where you\'ll have the opportunity to appreciate their captivating music and unique lifestyle. Nearby, we visit Dayet Srji Salt Lake, a haven for birds during the spring migration.\n\nVenture further into the Sahara to the golden-hued sand dunes. As we approach the camp there is the opportunity to embrace the local mode of travel with a camel ride. Finish with sunset over the Saharan dunes, marking the end of an unforgettable day. This evening spend a night under the stars.',
+    hotel: 'merzouga',
+    mapLocation: 'Merzouga,Morocco'
+  },
+  {
+    day: 17, date: '2026-03-26', name: 'Todra Gorge', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast', 'Dinner'],
+    description: 'An early start is well worth the views of the spectacular Erg Chebbi dunes as the sun rises in the morning. After breakfast back at camp, leave for Tinghir and Todra Gorge \u2013 the highest and the narrowest gorges in Morocco.\n\nEnjoy some free time before exploring the dramatic gorges on foot with your guide. Along the way, visit a traditional carpet cooperative village to learn about local craftsmanship and culture.',
+    hotel: 'todra',
+    mapLocation: 'Todra+Gorge,Morocco'
+  },
+  {
+    day: 18, date: '2026-03-27', name: 'Ouarzazate', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast', 'Dinner'],
+    description: 'Today our adventure leads us to Ouarzazate, often referred to as the Hollywood of North Africa. In ancient times, African traders traversed through this very path on their journeys towards Europe.',
+    optional: 'There is the option to experience the thrill of quad biking in Ouarzazate, where desert trails and rugged landscapes create the perfect playground for adventure (extra cost).',
+    hotel: 'ouarzazate',
+    mapLocation: 'Ouarzazate,Morocco'
+  },
+  {
+    day: 19, date: '2026-03-28', name: 'Ait Benhaddou \u2013 Marrakesh', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'After breakfast we head toward the UNESCO heritage listed village of Ait Benhaddou. This ancient village offers a glimpse into Morocco\'s rich past and was used in a Game of Thrones episode.\n\nContinuing our adventure, we traverse the majestic High Atlas Mountains with breathtaking vistas along the way. Our day finishes in Marrakesh, a city dramatically framed against the snow-capped peaks of the Atlas Mountains. Here, you\'ll encounter Marrakesh\'s iconic landmark, the Koutoubia Tower.\n\nWe\'ll be spending the next three nights in Marrakesh.',
+    hotel: 'marrakech',
+    mapLocation: 'Ait+Benhaddou,Morocco'
+  },
+  {
+    day: 20, date: '2026-03-29', name: 'Marrakesh Highlights', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'Today we will have our local guide to take us through some of the highlights of the city. Start with the Bahia Palace built at the end of the 19th century by Grand Vizier of Morocco, a great example of the Moorish architecture. Continue to the bustling Souks (markets) and make our way to the famed Djamaa Lefna square, the entertainment hub of Marrakesh.\n\nThe remainder of the day is at your leisure to discover the city further.',
+    optional: 'Optional: dinner accompanied by a Fantasia performance this evening (extra cost).',
+    hotel: 'marrakech',
+    mapLocation: 'Bahia+Palace,Marrakech,Morocco'
+  },
+  {
+    day: 21, date: '2026-03-30', name: 'Marrakesh \u2013 Free Day', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'Today is a free day! Your tour guide is available with suggestions for optional activities (at your own expense), such as a hot air balloon ride, a cooking class with a local chef, a relaxing session at a Moroccan Hammam spa, or visit the colourful Jardin Majorelle.\n\nAlternatively, take this opportunity to shop in the bustling souks or wander through the medina at your own pace.',
+    hotel: 'marrakech',
+    mapLocation: 'Jardin+Majorelle,Marrakech,Morocco'
+  },
+  {
+    day: 22, date: '2026-03-31', name: 'Marrakesh to Casablanca', country: 'morocco',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast', 'Dinner'],
+    description: 'This morning is free. Take a late breakfast and relax by the hotel pool, or uncover more of Marrakesh\'s wonderful culture and historic architecture.\n\nIn the afternoon, it\'s a 3-hour drive to Casablanca, where a farewell dinner awaits this evening.',
+    hotel: 'casablanca2',
+    mapLocation: 'Casablanca,Morocco'
+  },
+  {
+    day: 23, date: '2026-04-01', name: 'Depart Casablanca', country: 'travel',
+    tz: 'Africa/Casablanca',
+    meals: ['Breakfast'],
+    description: 'Your adventure in Morocco ends after breakfast with a transfer to Casablanca airport.\n\nYou have a long layover in Doha (arriving ~5:35am, departing ~8:20pm) \u2014 perfect for visiting the Vitality Wellbeing & Fitness Centre at the Oryx Airport Hotel inside Hamad International Airport. Pool, jacuzzi, gym, spa treatments \u2014 the ultimate way to refresh before the final flight home!',
+    flights: ['return1', 'return2'],
+    hotel: null,
+    doha_spa: true,
+    mapLocation: 'Casablanca+Airport,Morocco'
+  }
+];
+
+// Vitality Spa at Doha Airport (Oryx Airport Hotel)
+const DOHA_SPA = {
+  name: 'Vitality Wellbeing & Fitness Centre',
+  location: 'Oryx Airport Hotel, Hamad International Airport, Doha',
+  phone: '+974 4010 8204',
+  email: 'spareception@oryxairporthotel.com',
+  access: {
+    adult: { qar: 190, usd: 55, note: 'Per person \u2014 includes gym, 25m heated pool, jacuzzi, showers & lockers' },
+    showerOnly: { qar: 105, usd: 30, note: 'Per person' }
+  },
+  packages: [
+    { name: 'Jet Lag Recovery', time: '75 min', qar: 640, usd: 186, desc: '50-min deep tissue massage + 25-min foot revive + herbal tea + pool & jacuzzi access', best: true },
+    { name: 'Stopover Serenity', time: '80 min', qar: 605, usd: 175, desc: '50-min personalized massage + 30-min instant glow facial + herbal tea + pool & jacuzzi access' },
+    { name: 'Sole Serenity', time: '55 min', qar: 395, usd: 115, desc: '30-min hydro jet therapy + 25-min foot revive + herbal tea + pool & jacuzzi access' }
+  ],
+  quickTreatments: [
+    { name: 'Hydro Jet Massage', time: '30 min', qar: 150, usd: 41 },
+    { name: 'Hydro Jet Massage', time: '45 min', qar: 190, usd: 55 },
+    { name: 'Revitalizing Massage', time: '30 min', qar: 325, usd: 95 },
+    { name: 'Revitalizing Massage', time: '50 min', qar: 415, usd: 120 },
+    { name: 'Foot Revive', time: '25 min', qar: 305, usd: 88 },
+    { name: 'Instant Glow Facial', time: '30 min', qar: 305, usd: 88 }
+  ],
+  etiquette: 'Swimsuits & slippers mandatory in spa area. Sport shoes & clothing for fitness facilities.'
+};
+
+// ============================================================
+// TIMEZONE LOGIC
+// ============================================================
+
+let showViewerTZ = true; // true = show in viewer's timezone, false = show destination timezone
+const viewerTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+function formatTime(utcISO, tz) {
+  const d = new Date(utcISO);
+  return d.toLocaleString('en-AU', {
+    timeZone: tz,
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+}
+
+function formatDate(utcISO, tz) {
+  const d = new Date(utcISO);
+  return d.toLocaleString('en-AU', {
+    timeZone: tz,
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short'
+  });
+}
+
+function formatDateOnly(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00Z');
+  return d.toLocaleDateString('en-AU', {
+    timeZone: 'UTC',
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+
+function formatShortDate(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00Z');
+  return d.toLocaleDateString('en-AU', {
+    timeZone: 'UTC',
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short'
+  });
+}
+
+function tzAbbr(tz) {
+  const names = {
+    'Australia/Brisbane': 'AEST',
+    'Australia/Sydney': 'AEDT',
+    'Australia/Melbourne': 'AEDT',
+    'Asia/Qatar': 'Doha',
+    'Africa/Cairo': 'Cairo',
+    'Africa/Casablanca': 'Morocco',
+    'Europe/London': 'GMT',
+    'America/New_York': 'EST',
+    'America/Los_Angeles': 'PST',
+    'Asia/Tokyo': 'JST',
+    'Asia/Singapore': 'SGT',
+    'Pacific/Auckland': 'NZDT'
+  };
+  return names[tz] || tz.split('/').pop().replace(/_/g, ' ');
+}
+
+function friendlyTZ(tz) {
+  return tz.replace(/_/g, ' ').split('/').pop();
+}
+
+function toggleTzMode() {
+  showViewerTZ = !showViewerTZ;
+  document.getElementById('tz-toggle-btn').textContent =
+    showViewerTZ ? 'Show destination times' : 'Show in my timezone';
+  document.getElementById('tz-display').textContent =
+    showViewerTZ ? friendlyTZ(viewerTZ) : 'Destination local time';
+  render();
+}
+
+// ============================================================
+// RENDERING
+// ============================================================
+
+function buildFlightCard(flightId) {
+  const f = FLIGHTS.find(fl => fl.id === flightId);
+  if (!f) return '';
+
+  const depTime = formatTime(f.depUTC, showViewerTZ ? viewerTZ : f.depTZ);
+  const arrTime = formatTime(f.arrUTC, showViewerTZ ? viewerTZ : f.arrTZ);
+  const depDate = formatDate(f.depUTC, showViewerTZ ? viewerTZ : f.depTZ);
+  const arrDate = formatDate(f.arrUTC, showViewerTZ ? viewerTZ : f.arrTZ);
+  const depTZLabel = showViewerTZ ? tzAbbr(viewerTZ) : tzAbbr(f.depTZ);
+  const arrTZLabel = showViewerTZ ? tzAbbr(viewerTZ) : tzAbbr(f.arrTZ);
+
+  // Alt timezone info
+  const altDepTime = formatTime(f.depUTC, showViewerTZ ? f.depTZ : viewerTZ);
+  const altDepDate = formatDate(f.depUTC, showViewerTZ ? f.depTZ : viewerTZ);
+  const altArrTime = formatTime(f.arrUTC, showViewerTZ ? f.arrTZ : viewerTZ);
+  const altArrDate = formatDate(f.arrUTC, showViewerTZ ? f.arrTZ : viewerTZ);
+  const altLabel = showViewerTZ ? 'local time' : 'your time';
+  const altDepTZ = showViewerTZ ? tzAbbr(f.depTZ) : tzAbbr(viewerTZ);
+  const altArrTZ = showViewerTZ ? tzAbbr(f.arrTZ) : tzAbbr(viewerTZ);
+
+  return `
+    <div class="flight-card">
+      <div class="flight-header">
+        <span>&#9992;&#65039;</span>
+        ${f.airline} ${f.flightNum} &middot; ${f.aircraft}
+      </div>
+      <div class="flight-body">
+        <div class="flight-route">
+          <div class="flight-point">
+            <div class="city">${f.from}</div>
+            <div class="time-local">${depTime}</div>
+            <div class="date">${depDate}</div>
+            <div class="tz-label">${depTZLabel}</div>
+          </div>
+          <div class="flight-arrow">
+            <div class="duration">${f.duration}</div>
+            <div class="arrow-line"></div>
+          </div>
+          <div class="flight-point">
+            <div class="city">${f.to}</div>
+            <div class="time-local">${arrTime}</div>
+            <div class="date">${arrDate}</div>
+            <div class="tz-label">${arrTZLabel}</div>
+          </div>
+        </div>
+        <div class="your-time">
+          <span class="icon">&#128337;</span>
+          <span>In ${altLabel}: departs ${altDepTime} ${altDepTZ} (${altDepDate}), arrives ${altArrTime} ${altArrTZ} (${altArrDate})</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function buildHotelCard(hotelKey) {
+  if (!hotelKey) return '';
+  const h = HOTELS[hotelKey];
+  if (!h) return '';
+  const mapLink = h.mapQ ? `https://www.google.com/maps/search/?api=1&query=${h.mapQ}` : '';
+  return `
+    <div class="hotel-info">
+      <span class="icon">&#127976;</span>
+      <div class="details">
+        <div class="name">${h.name}</div>
+        <div class="address">${mapLink ? `<a href="${mapLink}" target="_blank" rel="noopener">${h.address} &#8599;</a>` : h.address}</div>
+        <div class="phone"><a href="tel:${h.phone.replace(/\s/g, '')}">${h.phone}</a></div>
+      </div>
+    </div>
+  `;
+}
+
+function buildSpaCard() {
+  const s = DOHA_SPA;
+  let packagesHtml = s.packages.map(p => `
+    <div class="spa-package ${p.best ? 'recommended' : ''}">
+      ${p.best ? '<span class="pkg-badge">Recommended</span>' : ''}
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <span class="pkg-name">${p.name}</span>
+          <span class="pkg-time">&middot; ${p.time}</span>
+        </div>
+        <span class="pkg-price">~$${p.usd} USD</span>
+      </div>
+      <div class="pkg-desc">${p.desc}</div>
+    </div>`).join('');
+
+  let quickHtml = s.quickTreatments.map(t =>
+    `<div class="spa-quick-item">${t.name} ${t.time} <span class="q-price">~$${t.usd}</span></div>`
+  ).join('');
+
+  return `
+    <div class="spa-card">
+      <h4>&#128134; ${s.name}</h4>
+      <div class="spa-location">${s.location}</div>
+      <div class="spa-access">
+        <div><span class="price">$${s.access.adult.usd} USD</span> (${s.access.adult.qar} QAR) day access</div>
+        <div class="note">${s.access.adult.note}</div>
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;color:var(--gray-700);margin-bottom:0.4rem">Spa Packages (all include pool & jacuzzi):</div>
+      ${packagesHtml}
+      <div style="font-size:0.8rem;font-weight:600;color:var(--gray-700);margin-top:0.75rem;margin-bottom:0.3rem">Quick Treatments:</div>
+      <div class="spa-quick">${quickHtml}</div>
+      <div class="spa-contact">
+        <div style="font-size:0.7rem;font-style:italic;margin-bottom:0.3rem">${s.etiquette}</div>
+        <div>&#128222; <a href="tel:${s.phone.replace(/\s/g, '')}">${s.phone}</a> &middot; &#9993;&#65039; <a href="mailto:${s.email}">${s.email}</a></div>
+      </div>
+    </div>`;
+}
+
+function buildDayCard(day) {
+  const today = new Date().toISOString().slice(0, 10);
+  const isToday = day.date === today;
+  const countryClass = day.country === 'morocco' ? 'morocco' : day.country === 'travel' ? 'travel' : '';
+  const todayClass = isToday ? 'today' : '';
+
+  let meetingNote = '';
+  if (day.meetingTimeUTC) {
+    const mt = formatTime(day.meetingTimeUTC, showViewerTZ ? viewerTZ : day.tz);
+    const mtAlt = formatTime(day.meetingTimeUTC, showViewerTZ ? day.tz : viewerTZ);
+    const mtTZ = showViewerTZ ? tzAbbr(viewerTZ) : tzAbbr(day.tz);
+    const altLabel = showViewerTZ ? `${tzAbbr(day.tz)} local` : tzAbbr(viewerTZ);
+    meetingNote = `<div class="your-time" style="margin-bottom:0.75rem">
+      <span class="icon">&#128197;</span>
+      <span>${day.notes || 'Meeting'}: <strong>${mt} ${mtTZ}</strong> (${mtAlt} ${altLabel})</span>
+    </div>`;
+  }
+
+  const descParagraphs = day.description.split('\n\n').map(p => `<p>${p}</p>`).join('');
+
+  const flightCards = (day.flights || []).map(fid => buildFlightCard(fid)).join('');
+  const hotelCard = buildHotelCard(day.hotel);
+  const optionalHtml = day.optional ? `<div class="optional">${day.optional}</div>` : '';
+
+  const locationLink = day.mapLocation ?
+    `<a href="https://www.google.com/maps/search/?api=1&query=${day.mapLocation}" target="_blank" rel="noopener" style="font-size:0.8rem; color:var(--egypt-blue); text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem; margin-bottom:0.5rem">&#128205; View on map</a>` : '';
+
+  // Weather
+  const wx = WEATHER[day.day];
+  const weatherBadge = wx ? `
+    <div class="weather-badge">
+      <span class="wx-icon">${wx.icon}</span>
+      <span class="wx-temp">${wx.high}°</span>
+    </div>` : '';
+  const weatherDetail = wx ? `
+    <div class="weather-detail">
+      <span class="wx-big-icon">${wx.icon}</span>
+      <div class="wx-info">
+        <div class="wx-temps">${wx.high}°C high / ${wx.low}°C low</div>
+        <div class="wx-desc">${wx.desc}</div>
+        <div class="wx-tip">${wx.tip}</div>
+      </div>
+    </div>` : '';
+
+  // Photo banner
+  const photo = PHOTOS[day.day];
+  const photoBanner = photo ? `
+    <div class="photo-banner" style="background-image: url('${photo.img}')">
+      <span class="banner-label">${photo.label}</span>
+    </div>` : '';
+
+  // Tips
+  const tip = TIPS[day.day];
+  const tipHtml = tip ? `
+    <div class="tip-box">
+      <span class="tip-icon">&#128161;</span>
+      <div class="tip-content">
+        <div class="tip-label">Local Tip</div>
+        <div class="tip-text">${tip.culture}</div>
+      </div>
+    </div>
+    <div class="tip-box" style="background: linear-gradient(135deg, #e8f0ff, #dde8f8)">
+      <span class="tip-icon">&#127890;</span>
+      <div class="tip-content">
+        <div class="tip-label">Packing Tip</div>
+        <div class="tip-text">${tip.packing}</div>
+      </div>
+    </div>` : '';
+
+  return `
+    <div class="day-card ${todayClass}" id="day-${day.day}" data-day="${day.day}">
+      ${photoBanner}
+      <div class="day-header" onclick="toggleDay(${day.day})">
+        <div class="day-num ${countryClass}">
+          <span class="label">Day</span>
+          <span class="num">${day.day}</span>
+        </div>
+        <div class="day-info">
+          <div class="day-title">
+            ${day.name}
+            ${isToday ? '<span class="today-badge">Today</span>' : ''}
+          </div>
+          <div class="day-date">${formatShortDate(day.date)}</div>
+          ${day.meals.length ? `<div class="day-meals"><span class="meal-badge" style="background:none;padding-left:0;color:var(--gray-500);font-size:0.6rem">Included:</span>${day.meals.map(m => `<span class="meal-badge">${m}</span>`).join('')}</div>` : ''}
+        </div>
+        ${weatherBadge}
+        <div class="day-chevron">&#9660;</div>
+      </div>
+      <div class="day-body">
+        <div class="day-content">
+          ${weatherDetail}
+          ${meetingNote}
+          ${locationLink}
+          ${descParagraphs}
+          ${optionalHtml}
+          ${tipHtml}
+          ${flightCards}
+          ${day.doha_spa ? buildSpaCard() : ''}
+          ${hotelCard}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function render() {
+  const container = document.getElementById('itinerary');
+
+  // Group days by country section
+  let html = '';
+
+  // Progress bar
+  const totalDays = 23;
+  const now = new Date();
+  const tourDayStart = new Date('2026-03-10T00:00:00+02:00');
+  const tourEndDate = new Date('2026-04-01T23:59:59+01:00');
+  let progressDay = 0;
+  let progressPct = 0;
+  let progressClass = '';
+  if (now >= tourDayStart && now <= tourEndDate) {
+    progressDay = Math.floor((now - tourDayStart) / (1000 * 60 * 60 * 24)) + 1;
+    progressDay = Math.max(1, Math.min(totalDays, progressDay));
+    progressPct = Math.round((progressDay / totalDays) * 100);
+    progressClass = progressDay > 10 ? 'morocco' : '';
+  } else if (now > tourEndDate) {
+    progressPct = 100;
+    progressClass = 'complete';
+  }
+
+  const routeStops = [
+    { name: 'Brisbane', day: 0, type: 'start' },
+    { name: 'Cairo', day: 1, type: 'egypt' },
+    { name: 'Aswan', day: 3, type: 'egypt' },
+    { name: 'Nile', day: 4, type: 'egypt' },
+    { name: 'Luxor', day: 7, type: 'egypt' },
+    { name: 'Cairo', day: 9, type: 'egypt' },
+    { name: 'Casa-blanca', day: 10, type: 'flight' },
+    { name: 'Rabat', day: 11, type: 'morocco' },
+    { name: 'Chef-chaouen', day: 12, type: 'morocco' },
+    { name: 'Fes', day: 13, type: 'morocco' },
+    { name: 'Sahara', day: 16, type: 'morocco' },
+    { name: 'Marra-kesh', day: 19, type: 'morocco' },
+    { name: 'Casa-blanca', day: 22, type: 'morocco' },
+    { name: 'Brisbane', day: 23, type: 'end' }
+  ];
+
+  let routeHtml = routeStops.map((s, i) => {
+    const isActive = progressDay > 0 && s.day <= progressDay && (i === routeStops.length - 1 || routeStops[i+1].day > progressDay);
+    const isMorocco = s.type === 'morocco' || s.type === 'flight';
+    const stopClass = `route-stop ${isMorocco ? 'morocco' : ''} ${isActive ? 'active' : ''}`;
+    const lineClass = i < routeStops.length - 1 ? `route-line ${routeStops[i+1].type === 'flight' ? 'flight' : (routeStops[i+1].type === 'morocco' || (routeStops[i+1].type === 'end' && i > 8)) ? 'morocco' : ''}` : '';
+    const line = i < routeStops.length - 1 ? `<div class="${lineClass}"></div>` : '';
+    return `<div class="${stopClass}"><div class="dot"></div><div class="stop-name">${s.name}</div></div>${line}`;
+  }).join('');
+
+  html += `
+    <div class="progress-section">
+      <div class="progress-header">
+        <span>Journey Progress</span>
+        <strong>${progressDay > 0 ? `Day ${progressDay} of ${totalDays}` : progressPct === 100 ? 'Complete!' : 'Not started yet'}</strong>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill ${progressClass}" style="width: ${progressPct}%"></div>
+      </div>
+    </div>
+    <div class="route-map">
+      <h3>Route: Brisbane &#10230; Cairo &#10230; Casablanca &#10230; Brisbane</h3>
+      <div class="route-stops">${routeHtml}</div>
+    </div>
+  `;
+
+  // Pre-departure flights
+  html += `<div class="section-header">
+    <span class="flag">&#9992;&#65039;</span>
+    <h2>Getting There</h2>
+    <div class="line"></div>
+  </div>`;
+
+  // Egypt section
+  html += `<div class="section-header" id="section-egypt">
+    <span class="flag">&#127466;&#127468;</span>
+    <h2>Egypt</h2>
+    <div class="line"></div>
+  </div>`;
+
+  DAYS.filter(d => d.day <= 9).forEach(d => { html += buildDayCard(d); });
+
+  // Transfer day
+  html += `<div class="section-header" id="section-transfer">
+    <span class="flag">&#9992;&#65039;</span>
+    <h2>Egypt to Morocco</h2>
+    <div class="line"></div>
+  </div>`;
+
+  const transferDay = DAYS.find(d => d.day === 10);
+  if (transferDay) html += buildDayCard(transferDay);
+
+  // Morocco section
+  html += `<div class="section-header" id="section-morocco">
+    <span class="flag">&#127474;&#127462;</span>
+    <h2>Morocco</h2>
+    <div class="line"></div>
+  </div>`;
+
+  DAYS.filter(d => d.day >= 11 && d.day <= 22).forEach(d => { html += buildDayCard(d); });
+
+  // Departure
+  html += `<div class="section-header" id="section-home">
+    <span class="flag">&#127968;</span>
+    <h2>Journey Home</h2>
+    <div class="line"></div>
+  </div>`;
+
+  const departDay = DAYS.find(d => d.day === 23);
+  if (departDay) html += buildDayCard(departDay);
+
+  container.innerHTML = html;
+
+  // Restore open states
+  openDays.forEach(dayNum => {
+    const card = document.querySelector(`[data-day="${dayNum}"]`);
+    if (card) card.classList.add('open');
+  });
+}
+
+// Track which days are open
+let openDays = new Set();
+
+function toggleDay(dayNum) {
+  const card = document.querySelector(`[data-day="${dayNum}"]`);
+  if (!card) return;
+  if (card.classList.contains('open')) {
+    card.classList.remove('open');
+    openDays.delete(dayNum);
+  } else {
+    card.classList.add('open');
+    openDays.add(dayNum);
+  }
+}
+
+function expandAll() {
+  document.querySelectorAll('.day-card').forEach(c => {
+    c.classList.add('open');
+    openDays.add(parseInt(c.dataset.day));
+  });
+}
+
+function collapseAll() {
+  document.querySelectorAll('.day-card').forEach(c => c.classList.remove('open'));
+  openDays.clear();
+}
+
+// ============================================================
+// NAV PILLS
+// ============================================================
+
+function buildNav() {
+  const pills = [
+    { label: '&#127466;&#127468; Egypt', href: '#section-egypt' },
+    { label: '&#127474;&#127462; Morocco', href: '#section-morocco', cls: 'morocco' },
+    { label: '&#127968; Home', href: '#section-home' }
+  ];
+
+  // Add key day landmarks
+  const landmarks = [
+    { day: 1, label: 'Cairo' },
+    { day: 4, label: 'Nile Cruise' },
+    { day: 7, label: 'Luxor' },
+    { day: 10, label: 'Casablanca' },
+    { day: 12, label: 'Chefchaouen' },
+    { day: 14, label: 'Fes' },
+    { day: 16, label: 'Sahara' },
+    { day: 19, label: 'Marrakesh' },
+    { day: 23, label: 'Depart' }
+  ];
+
+  let html = pills.map(p =>
+    `<a class="nav-pill ${p.cls || ''}" href="${p.href}">${p.label}</a>`
+  ).join('');
+
+  html += landmarks.map(l =>
+    `<a class="nav-pill" href="#day-${l.day}" onclick="openAndScroll(${l.day}); return false;">Day ${l.day}: ${l.label}</a>`
+  ).join('');
+
+  document.getElementById('nav-pills').innerHTML = html;
+}
+
+function openAndScroll(dayNum) {
+  const card = document.querySelector(`[data-day="${dayNum}"]`);
+  if (card) {
+    card.classList.add('open');
+    openDays.add(dayNum);
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// ============================================================
+// COUNTDOWN + AUTO-SCROLL
+// ============================================================
+
+// Figure out which tour day matches today (or nearest relevant day)
+function getTourDayForToday() {
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0, 10);
+  const tourStart = new Date('2026-03-09T11:55:00Z'); // departure from Brisbane
+  const tourEnd = new Date('2026-04-03T07:30:00Z');   // arrival back Brisbane
+
+  // Exact date match first
+  const exactMatch = DAYS.find(d => d.date === todayStr);
+  if (exactMatch) return exactMatch.day;
+
+  // During transit days (9 Mar departure, or 2-3 Apr return)
+  if (todayStr === '2026-03-09') return 1;  // departure day, show Day 1
+  if (todayStr === '2026-04-02' || todayStr === '2026-04-03') return 23; // return flights
+
+  // Before tour: show Day 1
+  if (now < tourStart) return 1;
+
+  // After tour: show Day 23
+  if (now > tourEnd) return 23;
+
+  // Fallback: find nearest day by date
+  const nowMs = now.getTime();
+  let closest = 1;
+  let closestDiff = Infinity;
+  DAYS.forEach(d => {
+    const diff = Math.abs(new Date(d.date + 'T12:00:00Z').getTime() - nowMs);
+    if (diff < closestDiff) { closestDiff = diff; closest = d.day; }
+  });
+  return closest;
+}
+
+function updateCountdown() {
+  const el = document.getElementById('countdown');
+  const now = new Date();
+  const tourStart = new Date('2026-03-09T11:55:00Z');
+  const tourEnd = new Date('2026-04-03T07:30:00Z');
+
+  if (now < tourStart) {
+    const diff = tourStart - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    if (days > 1) {
+      el.textContent = `${days} days until departure!`;
+    } else if (days === 1) {
+      el.textContent = 'Tomorrow! Final packing time!';
+    } else {
+      el.textContent = 'Departing today!';
+    }
+  } else if (now >= tourStart && now <= tourEnd) {
+    const tourDayStart = new Date('2026-03-10T00:00:00+02:00');
+    const dayNum = Math.floor((now - tourDayStart) / (1000 * 60 * 60 * 24)) + 1;
+    const clamped = Math.max(1, Math.min(23, dayNum));
+    const dayData = DAYS.find(d => d.day === clamped);
+    el.innerHTML = `Day ${clamped} of 23 &mdash; ${dayData ? dayData.name : 'On tour!'}`;
+  } else {
+    el.textContent = 'What an incredible journey!';
+  }
+}
+
+function scrollToRelevantDay() {
+  const targetDay = getTourDayForToday();
+  const card = document.querySelector(`[data-day="${targetDay}"]`);
+  if (!card) return;
+
+  // Open the card
+  card.classList.add('open');
+  openDays.add(targetDay);
+
+  // Scroll so the card lands just below the sticky timezone banner
+  requestAnimationFrame(() => {
+    const bannerHeight = document.querySelector('.tz-banner').offsetHeight;
+    const cardTop = card.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: cardTop - bannerHeight - 8, behavior: 'smooth' });
+  });
+}
+
+// ============================================================
+// SHARE
+// ============================================================
+
+function shareWhatsApp() {
+  const text = "Follow Belinda & Nerida's Egypt & Morocco adventure! \u{1F1EA}\u{1F1EC}\u{1F1F2}\u{1F1E6}\n" + window.location.href;
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('.share-btn.copy');
+    btn.innerHTML = '&#10003; Copied!';
+    setTimeout(() => { btn.innerHTML = '&#128203; Copy Link'; }, 2000);
+  });
+}
+
+function setupShareEmail() {
+  const subject = "Follow our Egypt & Morocco Adventure!";
+  const body = "Follow Belinda & Nerida's 23-day Egypt & Morocco tour!\n\n" + window.location.href;
+  const el = document.getElementById('share-email');
+  if (el) el.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+
+document.getElementById('tz-display').textContent = friendlyTZ(viewerTZ);
+updateCountdown();
+buildNav();
+render();
+setupShareEmail();
+
+// After everything is rendered, scroll to the relevant day
+requestAnimationFrame(() => {
+  setTimeout(scrollToRelevantDay, 100);
+});
+</script>
+</body>
+</html>
