@@ -709,6 +709,66 @@
     line-height: 1.4;
   }
 
+  /* Laundry Tip */
+  .laundry-box {
+    background: linear-gradient(135deg, #e8f4fd, #d4ecfa);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .laundry-box .tip-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+  .laundry-box .tip-text { font-size: 0.8rem; color: var(--gray-700); line-height: 1.4; }
+  .laundry-box .tip-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--gray-500); margin-bottom: 0.2rem; }
+
+  /* Currency Banner */
+  .currency-banner {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin: 0 1rem 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .currency-banner .currency-flag { font-size: 1.8rem; line-height: 1; }
+  .currency-banner .currency-info { flex: 1; }
+  .currency-banner .currency-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.15rem; }
+  .currency-banner .currency-rate { font-size: 0.85rem; color: var(--terracotta); font-weight: 600; margin-bottom: 0.3rem; }
+  .currency-banner .currency-notes { font-size: 0.78rem; color: var(--gray-700); line-height: 1.4; }
+
+  /* Extra Costs */
+  .costs-box {
+    background: linear-gradient(135deg, #fdf2f2, #fce8e8);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .costs-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .costs-header .tip-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+  .costs-header .tip-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--gray-500); }
+  .cost-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    gap: 0.5rem;
+  }
+  .cost-item:last-child { border-bottom: none; }
+  .cost-name { font-size: 0.8rem; color: var(--gray-900); font-weight: 500; flex: 1; }
+  .cost-price { font-size: 0.8rem; color: var(--terracotta); font-weight: 600; white-space: nowrap; text-align: right; }
+  .cost-note { font-size: 0.7rem; color: var(--gray-500); margin-top: 0.1rem; }
+  .costs-disclaimer { font-size: 0.7rem; color: var(--gray-500); font-style: italic; margin-top: 0.4rem; line-height: 1.3; }
+
   /* Clothing Recommendation */
   .clothing-box {
     background: linear-gradient(135deg, #fef3e2, #fde8cc);
@@ -1130,6 +1190,124 @@ const PHOTOS = {
 };
 
 // Cultural tips and packing suggestions per day
+const LAUNDRY = {
+  7:  'Great night to send laundry out — you\'re here 2 nights at Pyramisa Isis Luxor. Have it back by morning before Valley of the Kings.',
+  8:  'Last night in Luxor — collect your laundry before checking out tomorrow.',
+  13: 'Good time to do laundry — you\'re at Atlas Saiss Fes for 2 nights. Midway through Morocco, refresh everything before the desert stretch.',
+  19: 'Perfect laundry night — you\'re at Hotel El Andalous Marrakech for 3 nights. Plenty of time for turnaround (note: reviews say it\'s pricey here).',
+  20: 'Still at El Andalous — another chance to send laundry if needed before the journey home.'
+};
+
+const CURRENCY = {
+  egypt: {
+    name: 'Egyptian Pound',
+    code: 'EGP',
+    symbol: 'E\u00a3',
+    rate: '~1 AUD = 32 EGP',
+    notes: 'Card payments required at most archaeological sites (no cash). ATMs widely available — choose local currency (EGP) at the ATM to avoid conversion fees. Tips (baksheesh) in cash — keep small notes handy (10-50 EGP).',
+    icon: '\uD83C\uDDEA\uD83C\uDDEC'
+  },
+  morocco: {
+    name: 'Moroccan Dirham',
+    code: 'MAD',
+    symbol: 'MAD',
+    rate: '~1 AUD = 6.50 MAD',
+    notes: 'Closed currency — can only be obtained inside Morocco. Get cash at ATMs at Casablanca airport on arrival. ATM fee ~30-35 MAD per withdrawal. Cash preferred in medinas and souks. Always choose local currency (MAD) at ATMs.',
+    icon: '\uD83C\uDDF2\uD83C\uDDE6'
+  }
+};
+
+const EXTRA_COSTS = {
+  1:  [],
+  2:  [
+    { item: 'Giza Plateau entry', cost: '540 EGP (~$17 AUD)', note: 'Card only. General admission to Pyramids & Sphinx area' },
+    { item: 'Great Pyramid interior (optional)', cost: '1,500 EGP (~$47 AUD)', note: 'Card only. Go inside Khufu\'s pyramid' },
+    { item: 'Egyptian Museum entry', cost: '1,200 EGP (~$38 AUD)', note: 'Card only. Special exhibitions extra 500 EGP' },
+    { item: 'Tips for guide & driver', cost: '100-200 EGP each (~$3-6 AUD)', note: 'Cash. Per person, per day' }
+  ],
+  3:  [
+    { item: 'Philae Temple entry', cost: '550 EGP (~$17 AUD)', note: 'Card only' },
+    { item: 'Motorboat to Philae', cost: '200-400 EGP (~$6-12 AUD)', note: 'May be included in tour — check with guide' },
+    { item: 'Nubian dinner tips', cost: '50-100 EGP (~$2-3 AUD)', note: 'Cash. Tip for the host family' }
+  ],
+  4:  [
+    { item: 'Abu Simbel optional tour', cost: 'USD $110 per person', note: 'Paid locally on tour. Leaves very early morning' },
+    { item: 'Abu Simbel entry', cost: '822 EGP (~$26 AUD)', note: 'Card only. May be included in the $110 optional' },
+    { item: 'Felucca ride tips', cost: '50-100 EGP (~$2-3 AUD)', note: 'Cash. For the boat crew' },
+    { item: 'Nile Cruise tips (total)', cost: '$5-10 USD per person/day', note: 'Cash. Left at reception at end of cruise in an envelope' }
+  ],
+  5:  [
+    { item: 'Kom Ombo Temple entry', cost: '360 EGP (~$11 AUD)', note: 'Card only' }
+  ],
+  6:  [
+    { item: 'Edfu Temple entry', cost: '450 EGP (~$14 AUD)', note: 'Card only' },
+    { item: 'Luxor Temple entry', cost: '500 EGP (~$16 AUD)', note: 'Card only' },
+    { item: 'Horse carriage tip (Edfu)', cost: '20-50 EGP (~$1-2 AUD)', note: 'Cash' }
+  ],
+  7:  [
+    { item: 'Karnak Temple entry', cost: '200 EGP (~$6 AUD)', note: 'Card only' }
+  ],
+  8:  [
+    { item: 'Valley of the Kings entry', cost: '750 EGP (~$23 AUD)', note: 'Card only. Includes 3 tombs' },
+    { item: 'Tomb photography ticket', cost: '300 EGP (~$9 AUD)', note: 'Optional. No photos inside tombs without this' },
+    { item: 'Tomb of Seti I (optional)', cost: '2,000 EGP (~$63 AUD)', note: 'The most spectacular tomb — separate ticket' }
+  ],
+  9:  [
+    { item: 'Khan El Khalili shopping', cost: 'Variable', note: 'Cash preferred. Bargain — start at half the asking price!' },
+    { item: 'Flight tips (porters)', cost: '20-50 EGP (~$1-2 AUD)', note: 'Cash. At Cairo airport' }
+  ],
+  10: [
+    { item: 'Currency exchange', cost: 'ATM fee ~30-35 MAD', note: 'Get Moroccan Dirhams at Casablanca airport ATM on arrival' },
+    { item: 'Casablanca tips (porters)', cost: '10-20 MAD (~$2-3 AUD)', note: 'Cash in dirhams from this point on' }
+  ],
+  11: [
+    { item: 'Hassan II Mosque tour', cost: '130-140 MAD (~$20-22 AUD)', note: 'Mandatory guided tour for non-Muslims. Cash or card' },
+    { item: 'Headscarf purchase (if needed)', cost: '30-80 MAD (~$5-12 AUD)', note: 'Available near the mosque. Or bring your own wrap' }
+  ],
+  12: [
+    { item: 'Chefchaouen shopping', cost: 'Variable', note: 'Famous for blue pottery, woven blankets, leather goods' }
+  ],
+  13: [
+    { item: 'Volubilis entry', cost: '70 MAD (~$11 AUD)', note: 'UNESCO Roman ruins' }
+  ],
+  14: [
+    { item: 'Fes tannery viewing tip', cost: '20-30 MAD (~$3-5 AUD)', note: 'Guides at tanneries expect a small tip' },
+    { item: 'Fes medina shopping', cost: 'Variable', note: 'Famous for leather goods, ceramics, spices. Bargain hard!' }
+  ],
+  15: [],
+  16: [
+    { item: 'Sahara extras', cost: 'Usually included', note: 'Camel ride and camp dinner are typically part of the tour' },
+    { item: 'Desert camp staff tips', cost: '50-100 MAD (~$8-15 AUD)', note: 'Cash. For the camp crew and camel handlers' }
+  ],
+  17: [
+    { item: 'Todra Gorge', cost: 'Free entry', note: 'Tip for local guide if used: 50-100 MAD' }
+  ],
+  18: [
+    { item: 'Atlas Studios (optional)', cost: '50-80 MAD (~$8-12 AUD)', note: 'Where Gladiator and Game of Thrones were filmed' }
+  ],
+  19: [
+    { item: 'Ait Benhaddou entry', cost: '25 MAD (~$4 AUD)', note: 'UNESCO site. Small fee at the gate' }
+  ],
+  20: [
+    { item: 'Djemaa el-Fna food stalls', cost: '30-80 MAD (~$5-12 AUD)', note: 'Evening street food — must do! Cash only' },
+    { item: 'Bahia Palace (optional)', cost: '70 MAD (~$11 AUD)', note: 'Beautiful 19th-century palace' },
+    { item: 'Majorelle Garden (optional)', cost: '200 MAD (~$31 AUD)', note: 'Yves Saint Laurent\'s garden. Combined ticket with museum: 330 MAD' },
+    { item: 'Souk shopping', cost: 'Variable', note: 'Lanterns, leather, argan oil, spices. Bargain!' }
+  ],
+  21: [
+    { item: 'Hammam spa (optional)', cost: '200-500 MAD (~$31-77 AUD)', note: 'Traditional Moroccan bath house — amazing experience' },
+    { item: 'Free day activities', cost: 'Variable', note: 'Cooking class, horse ride, hot air balloon — all available' }
+  ],
+  22: [
+    { item: 'Farewell dinner drinks', cost: '30-80 MAD (~$5-12 AUD)', note: 'Drinks usually not included in group dinner' },
+    { item: 'Convert remaining dirhams', cost: 'N/A', note: 'Exchange back at airport — dirham can\'t be used outside Morocco' }
+  ],
+  23: [
+    { item: 'Doha airport spa (optional)', cost: 'From QAR 420 (~$175 AUD)', note: 'Vitality Spa at Oryx Hotel — see spa card below for packages' },
+    { item: 'Doha airport food', cost: 'QAR 50-150 (~$21-63 AUD)', note: '~14 hour layover — budget for meals' }
+  ]
+};
+
 const CLOTHING = {
   1:  { outfit: 'Comfortable travel clothes', shoes: 'Frankie4s', layers: 'Light jacket for plane', note: 'Travel day — dress for comfort on long flights.' },
   2:  { outfit: 'Sundress (covers knees & shoulders)', shoes: 'Frankie4s', layers: 'Overshirt for sun protection', note: 'Lots of walking at Giza Plateau — closed shoes essential on sandy, uneven ground.' },
@@ -1684,6 +1862,36 @@ function buildDayCard(day) {
       <div class="clothing-note">${clothing.note}</div>
     </div>` : '';
 
+  // Laundry tip
+  const laundryTip = LAUNDRY[day.day];
+  const laundryHtml = laundryTip ? `
+    <div class="laundry-box">
+      <span class="tip-icon">&#129531;</span>
+      <div class="tip-content">
+        <div class="tip-label">Laundry Night</div>
+        <div class="tip-text">${laundryTip}</div>
+      </div>
+    </div>` : '';
+
+  // Extra costs
+  const costs = EXTRA_COSTS[day.day];
+  const costsHtml = costs && costs.length > 0 ? `
+    <div class="costs-box">
+      <div class="costs-header">
+        <span class="tip-icon">&#128176;</span>
+        <div class="tip-label">Extra Costs (Not in Tour)</div>
+      </div>
+      ${costs.map(c => `
+        <div class="cost-item">
+          <div>
+            <div class="cost-name">${c.item}</div>
+            <div class="cost-note">${c.note}</div>
+          </div>
+          <div class="cost-price">${c.cost}</div>
+        </div>`).join('')}
+      <div class="costs-disclaimer">Prices are approximate and may change. Main site entry fees may be included in your tour — check with your tour operator.</div>
+    </div>` : '';
+
   return `
     <div class="day-card ${todayClass}" id="day-${day.day}" data-day="${day.day}">
       ${photoBanner}
@@ -1712,6 +1920,8 @@ function buildDayCard(day) {
           ${optionalHtml}
           ${tipHtml}
           ${clothingHtml}
+          ${costsHtml}
+          ${laundryHtml}
           ${flightCards}
           ${day.doha_spa ? buildSpaCard() : ''}
           ${hotelCard}
@@ -1801,6 +2011,16 @@ function render() {
     <div class="line"></div>
   </div>`;
 
+  const egCur = CURRENCY.egypt;
+  html += `<div class="currency-banner">
+    <div class="currency-flag">${egCur.icon}</div>
+    <div class="currency-info">
+      <div class="currency-name">${egCur.name} (${egCur.code})</div>
+      <div class="currency-rate">${egCur.rate}</div>
+      <div class="currency-notes">${egCur.notes}</div>
+    </div>
+  </div>`;
+
   DAYS.filter(d => d.day <= 9).forEach(d => { html += buildDayCard(d); });
 
   // Transfer day
@@ -1818,6 +2038,16 @@ function render() {
     <span class="flag">&#127474;&#127462;</span>
     <h2>Morocco</h2>
     <div class="line"></div>
+  </div>`;
+
+  const maCur = CURRENCY.morocco;
+  html += `<div class="currency-banner">
+    <div class="currency-flag">${maCur.icon}</div>
+    <div class="currency-info">
+      <div class="currency-name">${maCur.name} (${maCur.code})</div>
+      <div class="currency-rate">${maCur.rate}</div>
+      <div class="currency-notes">${maCur.notes}</div>
+    </div>
   </div>`;
 
   DAYS.filter(d => d.day >= 11 && d.day <= 22).forEach(d => { html += buildDayCard(d); });
