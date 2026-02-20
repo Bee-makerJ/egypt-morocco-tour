@@ -414,6 +414,40 @@
   }
   .your-time .icon { font-size: 1rem; }
 
+  /* Baggage Info */
+  .baggage-info {
+    background: #f5f0e8;
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .baggage-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.35rem;
+  }
+  .baggage-header .bag-icon { font-size: 1rem; }
+  .baggage-header .bag-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--gray-500); }
+  .baggage-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .baggage-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--white);
+    border: 1px solid #e0d5c5;
+    border-radius: 16px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.72rem;
+    color: var(--gray-700);
+    white-space: nowrap;
+  }
+  .baggage-tag .tag-emoji { font-size: 0.8rem; }
+
   /* Expand All */
   .controls {
     display: flex;
@@ -1061,7 +1095,8 @@ const FLIGHTS = [
     depTZ: 'Australia/Brisbane',
     arrTZ: 'Asia/Qatar',
     duration: '14h 35m',
-    aircraft: 'Boeing 777-300ER'
+    aircraft: 'Boeing 777-300ER',
+    baggage: { checked: '2 bags x 23kg each (46kg total)', carryon: '1 bag, max 7kg (50x37x25cm)', personal: 'Handbag + coat/blanket allowed' }
   },
   {
     id: 'outbound2',
@@ -1074,7 +1109,8 @@ const FLIGHTS = [
     depTZ: 'Asia/Qatar',
     arrTZ: 'Africa/Cairo',
     duration: '3h 50m',
-    aircraft: 'Boeing 777-300ER'
+    aircraft: 'Boeing 777-300ER',
+    baggage: { checked: '2 bags x 23kg each (46kg total)', carryon: '1 bag, max 7kg (50x37x25cm)', personal: 'Handbag + coat/blanket allowed' }
   },
   {
     id: 'mid-transfer',
@@ -1087,7 +1123,8 @@ const FLIGHTS = [
     depTZ: 'Africa/Cairo',
     arrTZ: 'Africa/Casablanca',
     duration: '5h 45m',
-    aircraft: 'Airbus A321'
+    aircraft: 'Airbus A321',
+    baggage: { checked: '2 bags x 23kg each (46kg total)', carryon: '1 bag, max 8kg', personal: '1 personal item allowed' }
   },
   {
     id: 'return1',
@@ -1100,7 +1137,8 @@ const FLIGHTS = [
     depTZ: 'Africa/Casablanca',
     arrTZ: 'Asia/Qatar',
     duration: '6h 45m',
-    aircraft: 'Airbus A350-900'
+    aircraft: 'Airbus A350-900',
+    baggage: { checked: '2 bags x 23kg each (46kg total)', carryon: '1 bag, max 7kg (50x37x25cm)', personal: 'Handbag + coat/blanket allowed' }
   },
   {
     id: 'return2',
@@ -1113,7 +1151,8 @@ const FLIGHTS = [
     depTZ: 'Asia/Qatar',
     arrTZ: 'Australia/Brisbane',
     duration: '14h 10m',
-    aircraft: 'Boeing 777-300ER'
+    aircraft: 'Boeing 777-300ER',
+    baggage: { checked: '2 bags x 23kg each (46kg total)', carryon: '1 bag, max 7kg (50x37x25cm)', personal: 'Handbag + coat/blanket allowed' }
   }
 ];
 
@@ -1717,6 +1756,17 @@ function buildFlightCard(flightId) {
           <span class="icon">&#128337;</span>
           <span>In ${altLabel}: departs ${altDepTime} ${altDepTZ} (${altDepDate}), arrives ${altArrTime} ${altArrTZ} (${altArrDate})</span>
         </div>
+        ${f.baggage ? `<div class="baggage-info">
+          <div class="baggage-header">
+            <span class="bag-icon">&#128188;</span>
+            <span class="bag-label">Luggage Allowance</span>
+          </div>
+          <div class="baggage-items">
+            <span class="baggage-tag"><span class="tag-emoji">&#128700;</span> ${f.baggage.checked}</span>
+            <span class="baggage-tag"><span class="tag-emoji">&#127890;</span> ${f.baggage.carryon}</span>
+            <span class="baggage-tag"><span class="tag-emoji">&#128092;</span> ${f.baggage.personal}</span>
+          </div>
+        </div>` : ''}
       </div>
     </div>
   `;
