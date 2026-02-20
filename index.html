@@ -709,6 +709,58 @@
     line-height: 1.4;
   }
 
+  /* Clothing Recommendation */
+  .clothing-box {
+    background: linear-gradient(135deg, #fef3e2, #fde8cc);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .clothing-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .clothing-header .tip-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .clothing-header .tip-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+  .clothing-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .clothing-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--white);
+    border: 1px solid #e8d5b8;
+    border-radius: 20px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    color: var(--gray-700);
+    white-space: nowrap;
+  }
+  .clothing-tag .tag-icon {
+    font-size: 0.85rem;
+  }
+  .clothing-note {
+    font-size: 0.78rem;
+    color: var(--gray-700);
+    line-height: 1.4;
+    font-style: italic;
+  }
+
   /* Share Section */
   .share-section {
     display: flex;
@@ -1078,6 +1130,32 @@ const PHOTOS = {
 };
 
 // Cultural tips and packing suggestions per day
+const CLOTHING = {
+  1:  { outfit: 'Comfortable travel clothes', shoes: 'Frankie4s', layers: 'Light jacket for plane', note: 'Travel day — dress for comfort on long flights.' },
+  2:  { outfit: 'Sundress (covers knees & shoulders)', shoes: 'Frankie4s', layers: 'Overshirt for sun protection', note: 'Lots of walking at Giza Plateau — closed shoes essential on sandy, uneven ground.' },
+  3:  { outfit: 'Sundress', shoes: 'Frankie4s', layers: 'Light layers for evening boat ride', note: 'Temple visit + Nubian dinner. Modest dress respectful at religious sites.' },
+  4:  { outfit: 'Kathmandu pants (if Abu Simbel) or sundress for cruise', shoes: 'Frankie4s for temple, Birkenstocks on cruise', layers: 'Light jacket for early morning', note: 'Abu Simbel is an early start in the desert. Switch to Birkenstocks once on the cruise.' },
+  5:  { outfit: 'Sundress', shoes: 'Frankie4s for temple, Birkenstocks on deck', layers: 'None needed — hot day', note: 'Relaxed cruise day with one temple stop at Kom Ombo.' },
+  6:  { outfit: 'Sundress', shoes: 'Frankie4s', layers: 'None needed', note: 'Multiple temple visits today — comfortable closed shoes are a must.' },
+  7:  { outfit: 'Sundress', shoes: 'Frankie4s', layers: 'None needed — very hot', note: 'Karnak is a huge complex. You\'ll be walking a lot in the heat.' },
+  8:  { outfit: 'Kathmandu pants + t-shirt', shoes: 'Frankie4s', layers: 'Overshirt for sun', note: 'Rocky, dusty, hot terrain at Valley of the Kings. Closed shoes and pants are strongly recommended. Start early!' },
+  9:  { outfit: 'Sundress', shoes: 'Frankie4s', layers: 'Overshirt for bazaar', note: 'Busy market streets at Khan El Khalili — closed shoes and secure bag.' },
+  10: { outfit: 'Sundress or wide jeans + overshirt', shoes: 'Frankie4s', layers: 'Light jacket — cooler coast', note: 'Travel day to Morocco. Casablanca is cooler than Egypt (~20°C). Have a jacket handy.' },
+  11: { outfit: 'Sundress (covers shoulders & knees) + wrap', shoes: 'Frankie4s', layers: 'Headscarf for mosque visit', note: 'Hassan II Mosque requires covered shoulders, knees, and a head covering. Your wrap is perfect.' },
+  12: { outfit: 'Kathmandu pants + t-shirt', shoes: 'Frankie4s', layers: 'Puffer jacket — 17°C mountain town', note: 'Chefchaouen has steep, narrow cobblestone streets. Warm layers and grippy closed shoes essential.' },
+  13: { outfit: 'Sundress or wide jeans', shoes: 'Frankie4s', layers: 'Light jacket', note: 'Walking at Volubilis ruins then driving to Fes. Comfortable shoes for uneven ground.' },
+  14: { outfit: 'Sundress + overshirt (for modesty in medina)', shoes: 'Frankie4s', layers: 'Wrap for shoulders', note: 'Fes medina has 9,400 alleys of uneven, sometimes slippery cobblestones. Closed shoes essential. Cover shoulders in conservative areas.' },
+  15: { outfit: 'Wide jeans + overshirt', shoes: 'Frankie4s', layers: 'Puffer jacket for mountain passes', note: 'Driving day through the Atlas Mountains — it gets cold at altitude. Layer up.' },
+  16: { outfit: 'Kathmandu pants', shoes: 'Frankie4s', layers: 'Puffer jacket + scarf (8°C at night!)', note: 'Sahara desert: sand gets everywhere in open shoes. Coldest night of the trip — the desert drops to 8°C after dark. Puffer is non-negotiable.' },
+  17: { outfit: 'Kathmandu pants + t-shirt', shoes: 'Frankie4s', layers: 'Overshirt', note: 'Most rugged day — gorge walking on rocky, uneven terrain. Closed shoes with good grip essential.' },
+  18: { outfit: 'Wide jeans or sundress', shoes: 'Frankie4s', layers: 'Light jacket', note: 'Scenic driving day via Ouarzazate. Comfortable clothes for a more relaxed day.' },
+  19: { outfit: 'Kathmandu pants', shoes: 'Frankie4s', layers: 'Overshirt', note: 'Climbing up the ancient hillside village of Ait Benhaddou + Atlas crossing. Closed shoes and pants recommended.' },
+  20: { outfit: 'Sundress', shoes: 'Frankie4s or Birkenstocks', layers: 'Wrap for evening souks', note: 'Warm Marrakesh day (~24°C). Souks can be busy — Frankie4s if doing lots of walking, Birkenstocks for a more relaxed pace.' },
+  21: { outfit: 'Sundress', shoes: 'Birkenstocks', layers: 'None needed — warm day', note: 'Free day in Marrakesh! Perfect for a relaxed exploration or optional hammam spa. Swimwear if doing hammam.' },
+  22: { outfit: 'Evening dress for farewell dinner', shoes: 'Birkenstocks', layers: 'Wrap for evening', note: 'Farewell dinner night. Start packing souvenirs!' },
+  23: { outfit: 'Comfortable travel clothes', shoes: 'Frankie4s', layers: 'Light jacket for flights', note: '~14 hour Doha layover then long flight home. Dress for comfort.' }
+};
+
 const TIPS = {
   1:  { culture: 'Tipping is expected in Egypt — small notes (10-20 EGP) for porters and helpers.', packing: 'Comfortable travel clothes, passport copies in separate bag.' },
   2:  { culture: 'Dress modestly at religious sites — shoulders and knees covered.', packing: 'Hat, sunscreen SPF50+, comfortable walking shoes, water bottle.' },
@@ -1590,6 +1668,22 @@ function buildDayCard(day) {
       </div>
     </div>` : '';
 
+  // Clothing recommendation
+  const clothing = CLOTHING[day.day];
+  const clothingHtml = clothing ? `
+    <div class="clothing-box">
+      <div class="clothing-header">
+        <span class="tip-icon">&#128090;</span>
+        <div class="tip-label">What to Wear</div>
+      </div>
+      <div class="clothing-items">
+        <span class="clothing-tag"><span class="tag-icon">&#128087;</span> ${clothing.outfit}</span>
+        <span class="clothing-tag"><span class="tag-icon">&#128095;</span> ${clothing.shoes}</span>
+        ${clothing.layers !== 'None needed' && clothing.layers !== 'None needed — hot day' && clothing.layers !== 'None needed — very hot' && clothing.layers !== 'None needed — warm day' ? `<span class="clothing-tag"><span class="tag-icon">&#129509;</span> ${clothing.layers}</span>` : ''}
+      </div>
+      <div class="clothing-note">${clothing.note}</div>
+    </div>` : '';
+
   return `
     <div class="day-card ${todayClass}" id="day-${day.day}" data-day="${day.day}">
       ${photoBanner}
@@ -1617,6 +1711,7 @@ function buildDayCard(day) {
           ${descParagraphs}
           ${optionalHtml}
           ${tipHtml}
+          ${clothingHtml}
           ${flightCards}
           ${day.doha_spa ? buildSpaCard() : ''}
           ${hotelCard}
