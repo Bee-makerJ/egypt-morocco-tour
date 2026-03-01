@@ -505,6 +505,131 @@
   }
   .footer .emergency a { color: var(--egypt-blue); text-decoration: none; }
 
+  /* Insurance Section */
+  .insurance-section {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .insurance-header {
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: var(--white);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .insurance-header:active { opacity: 0.9; }
+  .insurance-header .ins-icon { font-size: 1.5rem; }
+  .insurance-header h3 { font-size: 1rem; font-weight: 700; flex: 1; }
+  .insurance-header .chevron {
+    font-size: 0.9rem;
+    transition: transform 0.3s;
+  }
+  .insurance-section.open .insurance-header .chevron {
+    transform: rotate(180deg);
+  }
+  .insurance-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .insurance-section.open .insurance-body {
+    max-height: 3000px;
+  }
+  .insurance-content {
+    padding: 1rem 1.25rem;
+  }
+  .ins-card {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .ins-card:last-child { margin-bottom: 0; }
+  .ins-card h4 {
+    font-size: 0.85rem;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .ins-card h4 .card-icon { font-size: 1rem; }
+  .ins-card p, .ins-card li {
+    font-size: 0.8rem;
+    color: var(--gray-700);
+    margin-bottom: 0.2rem;
+    line-height: 1.5;
+  }
+  .ins-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.3rem 0 0;
+  }
+  .ins-card ul li { padding-left: 1.2rem; position: relative; }
+  .ins-card ul li::before {
+    content: '\2022';
+    position: absolute;
+    left: 0.2rem;
+    color: #2e7d32;
+    font-weight: bold;
+  }
+  .ins-card .ins-label {
+    font-size: 0.72rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+  .ins-card .ins-value {
+    font-size: 0.85rem;
+    color: var(--gray-900);
+    font-weight: 600;
+  }
+  .ins-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .ins-grid-item {
+    padding: 0.4rem 0;
+  }
+  .ins-emergency-num {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0;
+  }
+  .ins-emergency-num .region {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    min-width: 90px;
+  }
+  .ins-emergency-num a {
+    font-size: 0.85rem;
+    color: var(--egypt-blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .ins-note {
+    background: #fff3e0;
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: #e65100;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .ins-note .note-icon { font-size: 1rem; flex-shrink: 0; }
+
   /* Countdown */
   .countdown {
     background: rgba(255,255,255,0.12);
@@ -1060,6 +1185,153 @@
 
   <!-- Content injected by JS -->
   <div id="itinerary"></div>
+
+  <!-- Insurance -->
+  <div class="section-header" id="section-insurance">
+    <span class="flag">&#128737;&#65039;</span>
+    <h2>Travel Insurance</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="insurance-section" id="insurance-card">
+    <div class="insurance-header" onclick="toggleInsurance()">
+      <span class="ins-icon">&#128737;&#65039;</span>
+      <h3>Cover-More Travel Insurance</h3>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="insurance-body">
+      <div class="insurance-content">
+
+        <div class="ins-card">
+          <h4><span class="card-icon">&#128203;</span> Policy Details</h4>
+          <div class="ins-grid">
+            <div class="ins-grid-item">
+              <div class="ins-label">Policy Number</div>
+              <div class="ins-value">726100068249</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Plan</div>
+              <div class="ins-value">International Comprehensive</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Policy Type</div>
+              <div class="ins-value">Single Trip</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Issued</div>
+              <div class="ins-value">16 Jan 2026</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Cover Dates</div>
+              <div class="ins-value">9 Mar &ndash; 4 Apr 2026</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Destinations</div>
+              <div class="ins-value">Egypt &amp; Morocco</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Excess</div>
+              <div class="ins-value">$250.00</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Premium Paid</div>
+              <div class="ins-value">$736.00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ins-card">
+          <h4><span class="card-icon">&#129657;</span> Cancellation Cover</h4>
+          <div class="ins-grid">
+            <div class="ins-grid-item">
+              <div class="ins-label">Cancellation Cover</div>
+              <div class="ins-value">$4,000</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Medical Expenses</div>
+              <div class="ins-value">Unlimited</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Additional Expenses</div>
+              <div class="ins-value">Unlimited</div>
+            </div>
+            <div class="ins-grid-item">
+              <div class="ins-label">Luggage &amp; Personal</div>
+              <div class="ins-value">$15,000</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ins-card">
+          <h4><span class="card-icon">&#129658;</span> Nerida &mdash; Approved Medical Conditions</h4>
+          <p style="font-size:0.75rem; color:var(--gray-500); margin-bottom:0.4rem;">Assessment ref: 200439263 &bull; Approved 16 Jan 2026</p>
+          <ul>
+            <li>Diabetes type 1 (insulin-dependent)</li>
+            <li>High blood pressure (2 medications)</li>
+            <li>Cholesterol levels (medicated)</li>
+          </ul>
+          <div class="ins-note">
+            <span class="note-icon">&#9888;&#65039;</span>
+            <span>Nerida's existing conditions are <strong>covered</strong> under this policy. Belinda has no medical assessment on file.</span>
+          </div>
+        </div>
+
+        <div class="ins-card">
+          <h4><span class="card-icon">&#128222;</span> Cover-More Emergency Numbers</h4>
+          <p style="font-size:0.75rem; color:var(--gray-500); margin-bottom:0.4rem;">Call anytime 24/7 &mdash; they&rsquo;ll call you back</p>
+          <div class="ins-emergency-num">
+            <span class="region">Australia</span>
+            <a href="tel:1300728822">1300 72 88 22</a>
+          </div>
+          <div class="ins-emergency-num">
+            <span class="region">From overseas</span>
+            <a href="tel:+61289075619">+61 2 8907 5619</a>
+          </div>
+          <div class="ins-emergency-num">
+            <span class="region">USA</span>
+            <a href="tel:18009379763">1800 937 9763</a>
+          </div>
+          <div class="ins-emergency-num">
+            <span class="region">NZ</span>
+            <a href="tel:0800445524">0800 445 524</a>
+          </div>
+          <div class="ins-emergency-num">
+            <span class="region">UK</span>
+            <a href="tel:0800892014">0800 892 014</a>
+          </div>
+          <div class="ins-emergency-num">
+            <span class="region">Canada</span>
+            <a href="tel:18006458714">1800 645 8714</a>
+          </div>
+        </div>
+
+        <div class="ins-card">
+          <h4><span class="card-icon">&#128247;</span> Cover-More App</h4>
+          <p>Download the <strong>Cover-More app</strong> for 24/7 help, local emergency numbers, hospital &amp; pharmacy locator, and quick access to your policy.</p>
+        </div>
+
+        <div class="ins-card">
+          <h4><span class="card-icon">&#9888;&#65039;</span> COVID-19 Special Excess</h4>
+          <ul>
+            <li>Additional expenses if diagnosed on trip: +$250 special excess</li>
+            <li>Cancellation if diagnosed on trip: +$500 special excess</li>
+          </ul>
+          <p style="margin-top:0.3rem; font-size:0.75rem; color:var(--gray-500);">Special excess applies in addition to the $250 standard excess.</p>
+        </div>
+
+        <div class="ins-card">
+          <h4><span class="card-icon">&#128683;</span> Not Covered</h4>
+          <ul>
+            <li>Motorcycle/moped riding</li>
+            <li>Adventure activities (unless added)</li>
+            <li>Snow sports</li>
+            <li>Trips to Cuba, Iran, Syria, North Korea, Crimea/DNR/LNR regions</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Emergency Contacts -->
   <div class="footer">
@@ -2148,6 +2420,11 @@ function collapseAll() {
   openDays.clear();
 }
 
+function toggleInsurance() {
+  const card = document.getElementById('insurance-card');
+  if (card) card.classList.toggle('open');
+}
+
 // ============================================================
 // NAV PILLS
 // ============================================================
@@ -2156,7 +2433,8 @@ function buildNav() {
   const pills = [
     { label: '&#127466;&#127468; Egypt', href: '#section-egypt' },
     { label: '&#127474;&#127462; Morocco', href: '#section-morocco', cls: 'morocco' },
-    { label: '&#127968; Home', href: '#section-home' }
+    { label: '&#127968; Home', href: '#section-home' },
+    { label: '&#128737;&#65039; Insurance', href: '#section-insurance' }
   ];
 
   // Add key day landmarks
